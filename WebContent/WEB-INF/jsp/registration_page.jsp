@@ -13,7 +13,7 @@
 	
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
-	<fmt:message bundle="${loc}" key="local.button" var="button" />
+	<fmt:message bundle="${loc}" key="local.registration.button" var="button" />
 	<fmt:message bundle="${loc}" key="local.registration_page.name" var="name" />
 	<fmt:message bundle="${loc}" key="local.registration_page.surname" var="surname" />
 	<fmt:message bundle="${loc}" key="local.registration_page.patronymic" var="patronymic" />

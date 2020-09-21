@@ -29,7 +29,9 @@ public class TransferServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String currentCommand = request.getParameter(COMMAND_NAME);
+		currentCommand = currentCommand.toLowerCase();
 
 		switch (currentCommand) {
 		case LOGIN:
@@ -42,6 +44,7 @@ public class TransferServlet extends HttpServlet {
 			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 			break;
 		}
+
 	}
 
 }

@@ -7,18 +7,18 @@ import by.epamtc.restaurant.service.ServiceFactory;
 public class ServiceFactory {
 
 	private static final ServiceFactory instance = new ServiceFactory();
-	private final Service loginService = new LoginService();
-	private final Service registartionService = new RegistrationService();
+	private final static Service LOGIN_SERVICE = new LoginService();
+	private final static Service REGISTRATION_SERVICE = new RegistrationService();
 	
 	public static ServiceFactory getInstance() {
 		return instance;
 	}
 	
 	public Service getLoginService() {
-		return loginService;
+		return LOGIN_SERVICE;
 	}
 	
 	public Service getRegistrationService() {
-		return registartionService;
+		return REGISTRATION_SERVICE;
 	}
 }

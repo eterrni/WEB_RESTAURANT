@@ -11,24 +11,30 @@ import javax.servlet.http.HttpServletResponse;
 import by.epamtc.restaurant.service.Service;
 import by.epamtc.restaurant.service.exception.ServiceException;
 import by.epamtc.restaurant.dao.exception.DAOException;
+import by.epamtc.restaurant.bean.User;
 import by.epamtc.restaurant.dao.DAOFactory;
 
-public class LoginService implements Service{
+public class LoginService implements Service {
 
 	private static final DAOFactory instance = DAOFactory.getInstance();
 	private final UserDAO userDAO = instance.getUserDAO();
-	
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		
+
+		User user = new User();
+		user.setLogin(login);
+		user.setPassword(password);
+
 		try {
-			if(userDAO.userPresenceInSystem(login, password)) {
-				userDAO.signIn(login, password);
+			if (userDAO.userPresenceInSystem(user)) {
+				userDAO.signIn(user);
 				response.setContentType("text/html");
 				response.getWriter().write("<h1>Succsesfull logination, hello!!</h1>");
-				
+
 			} else {
 				request.getRequestDispatcher("WEB-INF/jsp/registration_page.jsp").forward(request, response);
 			}
@@ -36,6 +42,5 @@ public class LoginService implements Service{
 			throw new ServiceException(e);
 		}
 	}
-	
-	
+
 }

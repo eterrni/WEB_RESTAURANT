@@ -11,7 +11,7 @@ import by.epamtc.restaurant.service.ServiceFactory;
 public class LoginCommand implements Command {
 
 	private static final ServiceFactory factory = ServiceFactory.getInstance();
-	private final Service service = factory.getLoginService();
+	private static final Service service = factory.getLoginService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

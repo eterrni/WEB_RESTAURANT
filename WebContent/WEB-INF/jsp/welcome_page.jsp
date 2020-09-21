@@ -24,24 +24,24 @@
 		<h1><c:out value="${message2}" /></h1>
 		<form action="goToTransferServlet" method="post">
 		<input type="hidden" name="command" value="login" />
-		<input type="submit" name="local" value="${login_button}" />
+		<input type="submit" value="${login_button}" />
 		</form>
 		<form action="goToTransferServlet" method="post">
 		<input type="hidden" name="command" value="registration" />
-		<input type="submit" name="local" value="${registration_button}" />
+		<input type="submit" value="${registration_button}" />
 		</form>
 		<br>
 		
 	<form action="ServletForChangeLanguage" method="post">
 	<input type="hidden" name="local" value="ru" />
 	<input type="hidden" name="name_jsp" value="welcome_page.jsp" />
-	<input type="submit" name="local" value="${ru_button}" />
+	<input type="submit" value="${ru_button}" />
 	</form>
 	
 	<form action="ServletForChangeLanguage" method="post" >
 	<input type="hidden" name="local" value="en" />
 	<input type="hidden" name="name_jsp" value="welcome_page.jsp" />
-	<input type="submit" name="local" value="${en_button}" />
+	<input type="submit" value="${en_button}" />
 	</form>
 	
 </body>

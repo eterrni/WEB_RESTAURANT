@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import by.epamtc.restaurant.bean.User;
 import by.epamtc.restaurant.connection_pool.ConnectionPool;
 import by.epamtc.restaurant.connection_pool.exception.ConnectionPoolException;
 import by.epamtc.restaurant.dao.UserDAO;
@@ -12,21 +13,34 @@ import by.epamtc.restaurant.dao.exception.DAOException;
 
 public class SQLUserDAO implements UserDAO {
 
+	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+
 	private static final String SELECT_LOGIN_PASSWORD = "SELECT * FROM `rest_db`.users\r\n"
 			+ "WHERE users.login =? AND users.password=?;";
 	private static final String ADD_NEW_USER = "INSERT INTO users(name, surname, patronymic, login, "
 			+ "password, phone_number, age, email, users_role_id_role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	@Override
-	public void signIn(String login, String password) throws DAOException {
+	public void signIn(User user) throws DAOException {
+
+		String login = user.getLogin();
+		String password = user.getPassword();
 
 	}
 
 	@Override
-	public void registartion(String name, String surname, String patronymic, String login, String password,
-			String phone_number, Integer age, String email, Integer role_id) throws DAOException {
+	public void registartion(User user) throws DAOException {
 
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		String name = user.getName();
+		String surname = user.getSurname();
+		String patronymic = user.getPatronymic();
+		String login = user.getLogin();
+		String password = user.getPassword();
+		String phone_number = user.getPhone_number();
+		Integer age = user.getAge();
+		String email = user.getEmail();
+		Integer role_id = user.getRole_id();
+
 		Connection cn = null;
 		PreparedStatement ps = null;
 
@@ -48,26 +62,22 @@ public class SQLUserDAO implements UserDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException | ConnectionPoolException e) {
-			connectionPool.returnConnection(cn);
 			throw new DAOException("registartion", e);
 		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					connectionPool.returnConnection(cn);
-					throw new DAOException(e);
-				}
+			try {
+				connectionPool.closeConnection(cn, ps);
+			} catch (ConnectionPoolException e) {
+				throw new DAOException("", e);
 			}
 		}
-
-		connectionPool.returnConnection(cn);
 	}
 
 	@Override
-	public boolean userPresenceInSystem(String login, String password) throws DAOException {
+	public boolean userPresenceInSystem(User user) throws DAOException {
 
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		String login = user.getLogin();
+		String password = user.getPassword();
+
 		Connection cn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -86,23 +96,11 @@ public class SQLUserDAO implements UserDAO {
 		} catch (SQLException | ConnectionPoolException e) {
 			throw new DAOException("userPresenceInSystem", e);
 		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					throw new DAOException(e);
-				}
+			try {
+				connectionPool.closeConnection(cn, ps, rs);
+			} catch (ConnectionPoolException e) {
+				throw new DAOException("", e);
 			}
-
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					throw new DAOException(e);
-				}
-			}
-
-			connectionPool.returnConnection(cn);
 		}
 
 		return true;
