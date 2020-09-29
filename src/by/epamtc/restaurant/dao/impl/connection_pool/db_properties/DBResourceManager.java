@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.connection_pool.db_properties;
+package by.epamtc.restaurant.dao.impl.connection_pool.db_properties;
 
 import java.util.ResourceBundle;
 
@@ -6,7 +6,7 @@ public class DBResourceManager {
 
 	private static final DBResourceManager instance = new DBResourceManager();
 
-	private ResourceBundle bundle = ResourceBundle.getBundle("by.epamtc.restaurant.connection_pool.db_properties.db");
+	private ResourceBundle bundle = ResourceBundle.getBundle("by.epamtc.restaurant.dao.impl.connection_pool.db_properties.db");
 	
 	public static DBResourceManager getInstance() {
 		return instance;

@@ -8,15 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamtc.restaurant.controller.command.Command;
 
-public class GoToWelcomePageCommand implements Command {
+public class GoToUpdateUserDataPageCommand implements Command {
 
-	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
+	private static final String UPDATE_USER_DATA_PAGE = "WEB-INF/jsp/update_user_data_page.jsp";
+	
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+		request.getRequestDispatcher(UPDATE_USER_DATA_PAGE).forward(request, response);
 
 	}
 

@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.connection_pool.db_properties;
+package by.epamtc.restaurant.dao.impl.connection_pool.db_properties;
 
 public final class DBParameter {
 

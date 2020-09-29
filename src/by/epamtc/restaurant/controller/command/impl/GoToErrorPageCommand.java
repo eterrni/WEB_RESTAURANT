@@ -8,16 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamtc.restaurant.controller.command.Command;
 
-public class GoToWelcomePageCommand implements Command {
-
-	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
+public class GoToErrorPageCommand implements Command {
+	
+	private static final String ERROR_PAGE = "WEB-INF/jsp/error_page.jsp";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-
-		request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
-
+		
+		request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
 	}
 
 }

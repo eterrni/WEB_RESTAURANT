@@ -1,24 +1,19 @@
 package by.epamtc.restaurant.service;
 
-import by.epamtc.restaurant.service.impl.LoginService;
-import by.epamtc.restaurant.service.impl.RegistrationService;
+import by.epamtc.restaurant.service.impl.UserServiceImpl;
 import by.epamtc.restaurant.service.ServiceFactory;
 
 public class ServiceFactory {
 
 	private static final ServiceFactory instance = new ServiceFactory();
-	private final static Service LOGIN_SERVICE = new LoginService();
-	private final static Service REGISTRATION_SERVICE = new RegistrationService();
+	private final static UserService userService = new UserServiceImpl();
 	
 	public static ServiceFactory getInstance() {
 		return instance;
 	}
-	
-	public Service getLoginService() {
-		return LOGIN_SERVICE;
+
+	public UserService getUserService() {
+		return userService;
 	}
 	
-	public Service getRegistrationService() {
-		return REGISTRATION_SERVICE;
-	}
 }

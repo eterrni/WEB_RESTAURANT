@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.connection_pool;
+package by.epamtc.restaurant.dao.impl.connection_pool;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -23,9 +23,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 
-import by.epamtc.restaurant.connection_pool.exception.ConnectionPoolException;
-import by.epamtc.restaurant.connection_pool.db_properties.DBParameter;
-import by.epamtc.restaurant.connection_pool.db_properties.DBResourceManager;
+import by.epamtc.restaurant.dao.impl.connection_pool.exception.ConnectionPoolException;
+import by.epamtc.restaurant.dao.impl.connection_pool.db_properties.DBParameter;
+import by.epamtc.restaurant.dao.impl.connection_pool.db_properties.DBResourceManager;
 
 public final class ConnectionPool {
 

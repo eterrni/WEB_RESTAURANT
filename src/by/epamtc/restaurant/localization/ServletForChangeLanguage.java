@@ -18,10 +18,10 @@ public class ServletForChangeLanguage extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nameJsp = request.getParameter("name_jsp");
-		String jspTrace = "WEB-INF/jsp/"+nameJsp;
-		request.getSession(true).setAttribute("local", request.getParameter("local"));
-		request.getRequestDispatcher(jspTrace).forward(request, response);
+		String previousRequest = request.getParameter("previousRequest");
+		
+		request.getSession(true).setAttribute("locale", request.getParameter("locale"));
+		response.sendRedirect(previousRequest);
 	}
 
 }

@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamtc.restaurant.controller.command.Command;
 
-public class GoToWelcomePageCommand implements Command {
+public class GoToRegistrationPageCommand implements Command {
 
-	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
+	private static final String REGISTRATION_PAGE = "WEB-INF/jsp/registration_page.jsp";
+	private static final String PARAMETER_REGISTRATION_MESSAGE = "registration_message";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+		request.getRequestDispatcher(REGISTRATION_PAGE).forward(request, response);
 
+		request.getSession().removeAttribute(PARAMETER_REGISTRATION_MESSAGE);
 	}
-
 }

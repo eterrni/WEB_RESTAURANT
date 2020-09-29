@@ -1,12 +1,16 @@
 package by.epamtc.restaurant.dao;
 
 import by.epamtc.restaurant.bean.User;
+import by.epamtc.restaurant.bean.UserAuthData;
+import by.epamtc.restaurant.bean.UserRegistrationData;
+import by.epamtc.restaurant.bean.UserUpdateData;
 import by.epamtc.restaurant.dao.exception.DAOException;
+import by.epamtc.restaurant.dao.exception.UserExistsDAOException;
 
 public interface UserDAO {
-	void signIn(User user) throws DAOException;
+	User authorization(UserAuthData userAuthData) throws DAOException;
 
-	void registartion(User user) throws DAOException;
+	boolean registartion(UserRegistrationData userRegistrationData) throws DAOException, UserExistsDAOException;
 
-	public boolean userPresenceInSystem(User user) throws DAOException;
+	boolean updateUserData(UserUpdateData userUpdateData, User user) throws DAOException;
 }

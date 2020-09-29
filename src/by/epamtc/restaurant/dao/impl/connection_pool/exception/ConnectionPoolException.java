@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.connection_pool.exception;
+package by.epamtc.restaurant.dao.impl.connection_pool.exception;
 
 public class ConnectionPoolException extends Exception {
 

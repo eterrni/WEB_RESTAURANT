@@ -2,45 +2,32 @@ package by.epamtc.restaurant.bean;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserUpdateData implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
-	private Integer id;
+	private static final long serialVersionUID = -4522524188219835397L;
+	
 	private String name;
 	private String surname;
 	private String patronymic;
-	private String login;
-	private String password;
 	private String phoneNumber;
 	private Integer age;
 	private String email;
-	private Role role;
-
-	public User() {
-	}
-
-	public User(Integer id, String name, String surname, String patronymic, String login, String password, String phoneNumber,
-			Integer age, String email, Role role) {
+	private Integer id;
+	
+	public UserUpdateData(String name, String surname, String patronymic, String phoneNumber, Integer age, String email,
+			Integer id) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.patronymic = patronymic;
-		this.login = login;
-		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.age = age;
 		this.email = email;
-		this.role = role;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public UserUpdateData() {
+		super();
 	}
 
 	public String getName() {
@@ -67,22 +54,6 @@ public class User implements Serializable {
 		this.patronymic = patronymic;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -107,12 +78,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Role getRole() {
-		return role;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public static long getSerialversionuid() {
@@ -126,12 +97,9 @@ public class User implements Serializable {
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((patronymic == null) ? 0 : patronymic.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
@@ -144,7 +112,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserUpdateData other = (UserUpdateData) obj;
 		if (age == null) {
 			if (other.age != null)
 				return false;
@@ -160,20 +128,10 @@ public class User implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
 			return false;
 		if (patronymic == null) {
 			if (other.patronymic != null)
@@ -185,8 +143,6 @@ public class User implements Serializable {
 				return false;
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
-		if (role != other.role)
-			return false;
 		if (surname == null) {
 			if (other.surname != null)
 				return false;
@@ -197,13 +153,12 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", login="
-				+ login + ", password=" + password + ", phoneNumber=" + phoneNumber + ", age=" + age + ", email="
-				+ email + ", role=" + role + "]";
+		return "UserUpdateData [name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", phoneNumber="
+				+ phoneNumber + ", age=" + age + ", email=" + email + ", id=" + id + "]";
 	}
-
 	
-
 	
-
+	
+	
+	
 }
