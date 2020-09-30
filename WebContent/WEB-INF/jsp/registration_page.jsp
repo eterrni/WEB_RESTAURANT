@@ -49,13 +49,13 @@
                 
             <form action="ServletForChangeLanguage" method="post">
  			<input type="hidden" name="locale" value="ru" />
- 			<input type="hidden" name="name_jsp" value="registration_page.jsp" />
+ 			<input type="hidden" name="previousRequest" value="Controller?command=go_to_registration_page" />
  			<button type="submit" >${ru_button}</button>
  			</form>
  				
  			<form action="ServletForChangeLanguage" method="post">
  			<input type="hidden" name="locale" value="en" />
- 			<input type="hidden" name="name_jsp" value="registration_page.jsp" />
+ 			<input type="hidden" name="previousRequest" value="Controller?command=go_to_registration_page" />
  			<button type="submit" >${en_button}</button>
  			</form>
  				
@@ -103,7 +103,7 @@
             
             <c:if test="${sessionScope.registration_message eq 'registration_successful'}">
           		<h3>${registration_successful_1}</h3>
-                <p>${registration_successful_2} <a href="Controller?command=go_to_login_page">${registration_successful_3}</a> ${registration_successful_4}</p>
+                <p style ="color:green">${registration_successful_2} <a href="Controller?command=go_to_login_page">${registration_successful_3}</a> ${registration_successful_4}</p>
             </c:if>
             
             <c:if test="${sessionScope.registration_message eq 'registration_unsuccessful'}">

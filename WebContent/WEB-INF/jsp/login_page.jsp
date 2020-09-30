@@ -35,13 +35,13 @@
 		
 		<form action="ServletForChangeLanguage" method="post">
 		<input type="hidden" name="locale" value="ru" />
-		<input type="hidden" name="name_jsp" value="login_page.jsp" />
+		<input type="hidden" name="previousRequest" value="Controller?command=go_to_login_page" />
 		<input type="submit" name="local" value="${ru_button}" />
 		</form>
 	
 		<form action="ServletForChangeLanguage" method="post" >
 		<input type="hidden" name="locale" value="en" />
-		<input type="hidden" name="name_jsp" value="login_page.jsp" />
+		<input type="hidden" name="previousRequest" value="Controller?command=go_to_login_page" />
 		<input type="submit" name="local" value="${en_button}" />
 		</form>
 </body>
