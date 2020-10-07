@@ -9,7 +9,6 @@
     	<title>Document</title>
     	<style><%@include file="/WEB-INF/css/reset.css"%></style>
     	<style><%@include file="/WEB-INF/css/core.css"%></style>
-    	<style><%@include file="/WEB-INF/css/registration.css"%></style>
 
    	<fmt:setLocale value="${sessionScope.locale}"/>
 	
@@ -17,7 +16,9 @@
 	
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
-	<fmt:message bundle="${loc}" key="local.registration.button" var="button" />
+	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
+	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
+	
 	<fmt:message bundle="${loc}" key="local.registration_page.name" var="name" />
 	<fmt:message bundle="${loc}" key="local.registration_page.surname" var="surname" />
 	<fmt:message bundle="${loc}" key="local.registration_page.patronymic" var="patronymic" />
@@ -26,6 +27,7 @@
 	<fmt:message bundle="${loc}" key="local.registration_page.phone_number" var="phone_number" />
 	<fmt:message bundle="${loc}" key="local.registration_page.age" var="age" />
 	<fmt:message bundle="${loc}" key="local.registration_page.email" var="email" />
+	<fmt:message bundle="${loc}" key="local.registration.button" var="button" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -34,14 +36,17 @@
 	<fmt:message bundle="${loc}" key="local.welcome_page.work_time" var="work_time" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.address" var="address" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.social_networks" var="social_networks" />
+	
 	<fmt:message bundle="${loc}" key="local.registration_page.registration_unsuccessful" var="registration_unsuccessful" />
 	<fmt:message bundle="${loc}" key="local.registration_page.registration_successful_1" var="registration_successful_1" />
 	<fmt:message bundle="${loc}" key="local.registration_page.registration_successful_2" var="registration_successful_2" />
 	<fmt:message bundle="${loc}" key="local.registration_page.registration_successful_3" var="registration_successful_3" />
 	<fmt:message bundle="${loc}" key="local.registration_page.registration_successful_4" var="registration_successful_4" />
 	<fmt:message bundle="${loc}" key="local.registration_page.user_already_exists" var="user_already_exists" />
+	<fmt:message bundle="${loc}" key="local.registration_page.incorrect_data" var="incorrect_data" />
 </head>
 <body>
+<!-- START HEADER -->
     <header>
         <div class="header-up">
             <div class="registr-box">
@@ -82,19 +87,20 @@
             </div> 
         </div>
     </header>
+<!-- END HEADER -->
     <div class="main-form">
         <div class="form-wrapper">
             <form action="Controller" method="GET">
                 <div class="registr-form">
 					<input type="hidden" name="command" value="registration" />
-                    <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,15}" placeholder="${name}"/>
+                    <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${name}"/>
                     <input type="text" name="surname" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${surname}"/>
                     <input type="text" name="patronymic" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${patronymic}"/>
                     <input type="text" name="login" pattern="[a-zA-Z][a-zA-Z0-9]{2,14}" placeholder="${login}">
                     <input type="password" name="password" pattern="((?=.*\d)(?=.*[a-zA-Z]).{5,15})" placeholder="${password}"/>
-		  		    <input type="tel" name="phoneNumber" placeholder="${phone_number}"/><br>
+		  		    <input type="tel" name="phoneNumber" pattern="^[0-9\\(\\)-+\\s]+$" placeholder="${phone_number}"/><br>
                     <input type="number" min="6" max="100" name="age" pattern="\d+" placeholder="${age}" /><br>
-                    <input type="email" name="email" placeholder="${email}" />
+                    <input type="text" name="email" pattern="^[\w.-_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$" placeholder="${email}"/>
                 </div>
                 <div class="button">
                     <input type="submit" value="${button}" />
@@ -102,20 +108,25 @@
             </form>
             
             <c:if test="${sessionScope.registration_message eq 'registration_successful'}">
-          		<h3>${registration_successful_1}</h3>
+          		<p style = "color:green">${registration_successful_1}</p>
                 <p style ="color:green">${registration_successful_2} <a href="Controller?command=go_to_login_page">${registration_successful_3}</a> ${registration_successful_4}</p>
             </c:if>
             
             <c:if test="${sessionScope.registration_message eq 'registration_unsuccessful'}">
-                <p>${registartion_unsuccessful}</p>
+                <p style="color:red">${registartion_unsuccessful}</p>
             </c:if>
             
             <c:if test="${sessionScope.registration_message eq 'user_exist'}">
-                <p>${user_already_exists}</p>
+                <p style="color:red">${user_already_exists}</p>
+            </c:if>
+            
+            <c:if test="${sessionScope.registration_message eq 'incorrect_data'}">
+                <p style="color:red">${incorrect_data}</p>
             </c:if>
             
         </div>
     </div>
+<!-- START FOOTER-->
     <footer>
         <div class="footer-box">
             <div class="time-work">
@@ -132,5 +143,6 @@
             </div>
         </div>
     </footer>
+<!-- END FOOTER-->
 </body>
 </html>

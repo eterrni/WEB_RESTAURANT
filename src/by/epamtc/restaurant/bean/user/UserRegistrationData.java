@@ -1,12 +1,11 @@
-package by.epamtc.restaurant.bean;
+package by.epamtc.restaurant.bean.user;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserRegistrationData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
 	private String name;
 	private String surname;
 	private String patronymic;
@@ -15,32 +14,8 @@ public class User implements Serializable {
 	private String phoneNumber;
 	private Integer age;
 	private String email;
-	private Role role;
 
-	public User() {
-	}
-
-	public User(Integer id, String name, String surname, String patronymic, String login, String password, String phoneNumber,
-			Integer age, String email, Role role) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.surname = surname;
-		this.patronymic = patronymic;
-		this.login = login;
-		this.password = password;
-		this.phoneNumber = phoneNumber;
-		this.age = age;
-		this.email = email;
-		this.role = role;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public UserRegistrationData() {
 	}
 
 	public String getName() {
@@ -107,31 +82,17 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((patronymic == null) ? 0 : patronymic.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
@@ -144,7 +105,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserRegistrationData other = (UserRegistrationData) obj;
 		if (age == null) {
 			if (other.age != null)
 				return false;
@@ -154,11 +115,6 @@ public class User implements Serializable {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
 			return false;
 		if (login == null) {
 			if (other.login != null)
@@ -185,8 +141,6 @@ public class User implements Serializable {
 				return false;
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
-		if (role != other.role)
-			return false;
 		if (surname == null) {
 			if (other.surname != null)
 				return false;
@@ -197,13 +151,9 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", login="
+		return "UserRegistrationData [name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", login="
 				+ login + ", password=" + password + ", phoneNumber=" + phoneNumber + ", age=" + age + ", email="
-				+ email + ", role=" + role + "]";
+				+ email + "]";
 	}
-
-	
-
-	
 
 }

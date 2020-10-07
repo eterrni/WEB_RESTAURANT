@@ -7,26 +7,32 @@ import by.epamtc.restaurant.service.exception.ServiceException;
 import by.epamtc.restaurant.service.exception.UserExistsServiceException;
 import by.epamtc.restaurant.dao.exception.DAOException;
 import by.epamtc.restaurant.dao.exception.UserExistsDAOException;
-import by.epamtc.restaurant.bean.User;
-import by.epamtc.restaurant.bean.UserAuthData;
-import by.epamtc.restaurant.bean.UserRegistrationData;
-import by.epamtc.restaurant.bean.UserUpdateData;
+import by.epamtc.restaurant.bean.user.User;
+import by.epamtc.restaurant.bean.user.UserAuthData;
+import by.epamtc.restaurant.bean.user.UserRegistrationData;
+import by.epamtc.restaurant.bean.user.UserUpdateData;
+import by.epamtc.restaurant.controller.validator.UserValidator;
 import by.epamtc.restaurant.dao.DAOFactory;
 
 public class UserServiceImpl implements UserService {
 
 	private static final DAOFactory instance = DAOFactory.getInstance();
 	private static final UserDAO userDAO = instance.getUserDAO();
+	private static final UserValidator validator = UserValidator.getInstance();
 
 	@Override
 	public User authorization(UserAuthData userAuthData) throws ServiceException {
 		User user;
-
-		try {
-			user = userDAO.authorization(userAuthData);
-		} catch (DAOException e) {
-			throw new ServiceException(e);
+		if (validator.loginValidator(userAuthData)) {
+			try {
+				user = userDAO.authorization(userAuthData);
+			} catch (DAOException e) {
+				throw new ServiceException(e);
+			}
+		} else {
+			user = null;
 		}
+
 		return user;
 	}
 
@@ -34,13 +40,16 @@ public class UserServiceImpl implements UserService {
 	public boolean registration(UserRegistrationData userRegistrationData)
 			throws ServiceException, UserExistsServiceException {
 		boolean registration = false;
-
-		try {
-			registration = userDAO.registartion(userRegistrationData);
-		} catch (UserExistsDAOException e) {
-			throw new UserExistsServiceException(e);
-		} catch (DAOException e) {
-			throw new ServiceException(e);
+		if (validator.registartionValidator(userRegistrationData)) {
+			try {
+				registration = userDAO.registartion(userRegistrationData);
+			} catch (UserExistsDAOException e) {
+				throw new UserExistsServiceException(e);
+			} catch (DAOException e) {
+				throw new ServiceException(e);
+			}
+		} else {
+			registration = false;
 		}
 		return registration;
 	}
@@ -48,13 +57,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean update(UserUpdateData userUpdateData, User user) throws ServiceException {
 		boolean flag = false;
-
-		try {
-			if (userDAO.updateUserData(userUpdateData, user)) {
-				flag = true;
+		if (validator.updateDataValidator(userUpdateData)) {
+			try {
+				if (userDAO.updateUserData(userUpdateData, user)) {
+					flag = true;
+				} else {
+					flag = false;
+				}
+			} catch (DAOException e) {
+				throw new ServiceException(e);
 			}
-		} catch (DAOException e) {
-			throw new ServiceException(e);
+		} else {
+			flag = false;
 		}
 		return flag;
 	}

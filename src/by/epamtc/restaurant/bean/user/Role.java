@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.bean;
+package by.epamtc.restaurant.bean.user;
 
 public enum Role {
 

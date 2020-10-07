@@ -1,9 +1,9 @@
 package by.epamtc.restaurant.service;
 
-import by.epamtc.restaurant.bean.User;
-import by.epamtc.restaurant.bean.UserAuthData;
-import by.epamtc.restaurant.bean.UserRegistrationData;
-import by.epamtc.restaurant.bean.UserUpdateData;
+import by.epamtc.restaurant.bean.user.User;
+import by.epamtc.restaurant.bean.user.UserAuthData;
+import by.epamtc.restaurant.bean.user.UserRegistrationData;
+import by.epamtc.restaurant.bean.user.UserUpdateData;
 import by.epamtc.restaurant.service.exception.ServiceException;
 import by.epamtc.restaurant.service.exception.UserExistsServiceException;
 

@@ -6,7 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.epamtc.restaurant.bean.UserRegistrationData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import by.epamtc.restaurant.bean.user.UserRegistrationData;
 import by.epamtc.restaurant.controller.command.Command;
 import by.epamtc.restaurant.service.ServiceFactory;
 import by.epamtc.restaurant.service.UserService;
@@ -14,9 +17,6 @@ import by.epamtc.restaurant.service.exception.ServiceException;
 import by.epamtc.restaurant.service.exception.UserExistsServiceException;
 
 public class RegistrationCommand implements Command {
-
-	private static final ServiceFactory factory = ServiceFactory.getInstance();
-	private final UserService service = factory.getUserService();
 
 	private static final String PARAMETER_NAME = "name";
 	private static final String PARAMETER_SURNAME = "surname";
@@ -27,8 +27,20 @@ public class RegistrationCommand implements Command {
 	private static final String PARAMETER_AGE = "age";
 	private static final String PARAMETER_EMAIL = "email";
 
-	private static final String PARAMETER_REGISTRATION_MESSAGE = "registration_message";
-	private static final String GO_TO_REGISTRATION_PAGE = "Controller?command=go_to_registration_page";
+	private static final String ATTRIBUTE_REGISTRATION_MESSAGE = "registration_message";
+	private static final String ATTRIBUTE_ERROR = "error";
+
+	private static final String REGISTRATION_SUCCESSFUL_MESSAGE = "registration_successful";
+	private static final String REGISTRATION_UNSUCCESSFUL_MESSAGE = "registration_unsuccessful";
+	private static final String USER_EXIST_MESSAGE = "user_exist";
+	private static final String LOGGER_MESSAGE = "RegistrationCommand exception";
+
+	private static final String REGISTRATION_PAGE = "Controller?command=go_to_registration_page";
+	private static final String ERROR_PAGE = "Controller?command=go_to_error_page";
+
+	private static final Logger logger = LogManager.getLogger(RegistrationCommand.class);
+	private static final ServiceFactory factory = ServiceFactory.getInstance();
+	private final UserService service = factory.getUserService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,16 +66,21 @@ public class RegistrationCommand implements Command {
 		userRegistrationData.setEmail(email);
 
 		try {
+
 			if (service.registration(userRegistrationData)) {
-				request.getSession().setAttribute(PARAMETER_REGISTRATION_MESSAGE, "registration_successful");
+				request.getSession().setAttribute(ATTRIBUTE_REGISTRATION_MESSAGE, REGISTRATION_SUCCESSFUL_MESSAGE);
 			} else {
-				request.getSession().setAttribute(PARAMETER_REGISTRATION_MESSAGE, "registration_unsuccessful");
+				request.getSession().setAttribute(ATTRIBUTE_REGISTRATION_MESSAGE, REGISTRATION_UNSUCCESSFUL_MESSAGE);
 			}
+
 		} catch (UserExistsServiceException e) {
-			request.getSession().setAttribute(PARAMETER_REGISTRATION_MESSAGE, "user_exist");
+			request.getSession().setAttribute(ATTRIBUTE_REGISTRATION_MESSAGE, USER_EXIST_MESSAGE);
 		} catch (ServiceException e) {
-			// todo: loging
+			logger.error(LOGGER_MESSAGE);
+			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
+			response.sendRedirect(ERROR_PAGE);
 		}
-		response.sendRedirect(GO_TO_REGISTRATION_PAGE);
+
+		response.sendRedirect(REGISTRATION_PAGE);
 	}
 }

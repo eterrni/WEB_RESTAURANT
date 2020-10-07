@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-import by.epamtc.restaurant.bean.Role;
-import by.epamtc.restaurant.bean.User;
-import by.epamtc.restaurant.bean.UserAuthData;
-import by.epamtc.restaurant.bean.UserRegistrationData;
-import by.epamtc.restaurant.bean.UserUpdateData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import by.epamtc.restaurant.bean.user.Role;
+import by.epamtc.restaurant.bean.user.User;
+import by.epamtc.restaurant.bean.user.UserAuthData;
+import by.epamtc.restaurant.bean.user.UserRegistrationData;
+import by.epamtc.restaurant.bean.user.UserUpdateData;
 import by.epamtc.restaurant.dao.impl.connection_pool.ConnectionPool;
 import by.epamtc.restaurant.dao.impl.connection_pool.exception.ConnectionPoolException;
 import by.epamtc.restaurant.dao.UserDAO;
@@ -27,6 +30,8 @@ public class SQLUserDAO implements UserDAO {
 			+ "password, phone_number, age, email, users_role_id_role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 2)";
 	private static final String UPDATE_USER_DATA = "UPDATE `rest_db`.`users` SET `name` = ?, `surname` = ?, `patronymic` =?, `phone_number` = ?, `age` = ?, `email` = ? WHERE (`id_users` = ?);";
 	private static final String ROLE_ID_ADMINISTRATOR = "1";
+	
+	private static final Logger logger = LogManager.getLogger(SQLUserDAO.class);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +62,6 @@ public class SQLUserDAO implements UserDAO {
 				String name = rs.getString(2);
 				String surname = rs.getString(3);
 				String patronymic = rs.getString(4);
-				String login = rs.getString(5);
 				String phoneNumber = rs.getString(7);
 				Integer age = Integer.parseInt(rs.getString(8));
 				String email = rs.getString(9);
@@ -67,7 +71,6 @@ public class SQLUserDAO implements UserDAO {
 				user.setName(name);
 				user.setSurname(surname);
 				user.setPatronymic(patronymic);
-				user.setLogin(login);
 				user.setPhoneNumber(phoneNumber);
 				user.setAge(age);
 				user.setEmail(email);
@@ -128,13 +131,10 @@ public class SQLUserDAO implements UserDAO {
 			}
 
 		} catch (SQLIntegrityConstraintViolationException e) {
-			// todo: log
 			throw new UserExistsDAOException("user_exist", e);
 		} catch (SQLException e) {
-			// todo: log
 			throw new DAOException("Registration SQLException", e);
 		} catch (ConnectionPoolException e) {
-			// todo: log
 			throw new DAOException("Registration ConnectionPoolException", e);
 		} finally {
 			try {
@@ -150,7 +150,6 @@ public class SQLUserDAO implements UserDAO {
 
 	@Override
 	public boolean updateUserData(UserUpdateData userUpdateData, User user) throws DAOException {
-		boolean flag = false;
 
 		Connection cn = null;
 		PreparedStatement ps = null;
@@ -184,10 +183,14 @@ public class SQLUserDAO implements UserDAO {
 				return true;
 			}
 
-		} catch (ConnectionPoolException | SQLException e) {
-
+		} catch (ConnectionPoolException e) {
+			logger.error("update - connection pool exception");
+			throw new DAOException("update - connection pool exception", e);
+			
+		} catch (SQLException e) {
+			logger.error("update - SQLException");
+			throw new DAOException("update - SQLException", e);
 		}
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

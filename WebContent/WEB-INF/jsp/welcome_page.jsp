@@ -100,7 +100,7 @@
             <div class="how-to-pay">
                 <p>${social_networks}</p>
                 <div class="social-logo">
-                    <img src="/img/icon-footer-instagram.png" alt="insta">
+                    <img src="../img/icon-footer-instagram.png" alt="insta">
                 </div>
             </div>
         </div>

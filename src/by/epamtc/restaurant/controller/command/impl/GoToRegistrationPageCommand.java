@@ -11,7 +11,7 @@ import by.epamtc.restaurant.controller.command.Command;
 public class GoToRegistrationPageCommand implements Command {
 
 	private static final String REGISTRATION_PAGE = "WEB-INF/jsp/registration_page.jsp";
-	private static final String PARAMETER_REGISTRATION_MESSAGE = "registration_message";
+	private static final String ATTRIBUTE_REGISTRATION_MESSAGE = "registration_message";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,6 +19,6 @@ public class GoToRegistrationPageCommand implements Command {
 
 		request.getRequestDispatcher(REGISTRATION_PAGE).forward(request, response);
 
-		request.getSession().removeAttribute(PARAMETER_REGISTRATION_MESSAGE);
+		request.getSession().removeAttribute(ATTRIBUTE_REGISTRATION_MESSAGE);
 	}
 }

@@ -5,30 +5,37 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import by.epamtc.restaurant.service.exception.ServiceException;
-import by.epamtc.restaurant.bean.User;
-import by.epamtc.restaurant.bean.UserAuthData;
+import by.epamtc.restaurant.bean.user.User;
+import by.epamtc.restaurant.bean.user.UserAuthData;
 import by.epamtc.restaurant.controller.command.Command;
 import by.epamtc.restaurant.service.UserService;
 import by.epamtc.restaurant.service.ServiceFactory;
 
 public class LoginCommand implements Command {
 
-	private static final ServiceFactory factory = ServiceFactory.getInstance();
-	private static final UserService userService = factory.getUserService();
-
 	private static final String PARAMETER_LOGIN = "login";
 	private static final String PARAMETER_PASSWORD = "password";
-	private static final String PARAMETER_USER = "user";
 
-	private static final String PARAMETER_ERROR = "error";
-	private static final String PARAMETER_AUTHORIZATION_MESSAGE = "authorization_message";
+	private static final String ATTRIBUTE_USER = "user";
+	private static final String ATTRIBUTE_ERROR = "error";
+	private static final String ATTRIBUTE_AUTHORIZATION_MESSAGE = "authorization_message";
+
 	private static final String WELCOME_PAGE = "Controller?command=go_to_welcome_page";
 	private static final String LOGIN_PAGE = "Controller?command=go_to_login_page";
 	private static final String ERROR_PAGE = "Controller?command=go_to_error_page";
-	private static final String ERROR_MESSAGE = "Incorrect data";
+
+	private static final String INCORRECT_DATA_MESSAGE = "incorrect_data";
+	private static final String LOGGER_MESSAGE = "LoginCommand exception";
+
+	private static final Logger logger = LogManager.getLogger(LoginCommand.class);
+
+	private static final ServiceFactory factory = ServiceFactory.getInstance();
+	private static final UserService userService = factory.getUserService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -38,24 +45,27 @@ public class LoginCommand implements Command {
 
 		UserAuthData userAuthData = new UserAuthData(login, password);
 
-		HttpSession session;
+		String page = WELCOME_PAGE;
 		User user;
 
 		try {
 			user = userService.authorization(userAuthData);
+
 			if (user != null) {
-				session = request.getSession();
-				session.setAttribute(PARAMETER_USER, user);
-				response.sendRedirect(WELCOME_PAGE);
+				request.getSession().setAttribute(ATTRIBUTE_USER, user);
+				page = WELCOME_PAGE;
+
 			} else {
-				request.getServletContext().setAttribute(PARAMETER_AUTHORIZATION_MESSAGE, ERROR_MESSAGE);
-				response.sendRedirect(LOGIN_PAGE);
+				request.getSession().setAttribute(ATTRIBUTE_AUTHORIZATION_MESSAGE, INCORRECT_DATA_MESSAGE);
+				page = LOGIN_PAGE;
 			}
+
 		} catch (ServiceException e) {
-			// log
-			request.setAttribute(PARAMETER_ERROR, e);
-			request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
-			e.printStackTrace();
+			logger.error(LOGGER_MESSAGE);
+			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
+			page = ERROR_PAGE;
 		}
+
+		response.sendRedirect(page);
 	}
 }
