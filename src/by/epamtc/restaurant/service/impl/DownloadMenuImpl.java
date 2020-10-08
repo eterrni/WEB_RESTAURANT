@@ -15,14 +15,13 @@ public class DownloadMenuImpl implements DownloadMenuService {
 
 	private static final DAOFactory factory = DAOFactory.getInstance();
 	private static final DownloadMenuDAO downloadMenuDAO = factory.getDownloadMenuDAO();
-	
+
 	@Override
 	public List<Drink> downloadDrink() throws ServiceException {
 		List<Drink> drinkList = null;
 		try {
 			drinkList = downloadMenuDAO.downloadDrink();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
 			throw new ServiceException(e);
 		}
 		return drinkList;
@@ -34,7 +33,6 @@ public class DownloadMenuImpl implements DownloadMenuService {
 		try {
 			dishList = downloadMenuDAO.downloadDish();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
 			throw new ServiceException(e);
 		}
 		return dishList;
@@ -46,11 +44,9 @@ public class DownloadMenuImpl implements DownloadMenuService {
 		try {
 			desertList = downloadMenuDAO.downloadDesert();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
 			throw new ServiceException(e);
 		}
 		return desertList;
 	}
-
 
 }

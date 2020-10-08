@@ -90,19 +90,25 @@
 
 	<table>
     <c:forEach var="dish" items="${dishList}" >
-        <tr><td><c:out value="${dish}" /></td></tr>
+        <tr><td><c:out value="${dish.name}" /></td></tr>
+        <tr><td><c:out value="${dish.price}" /></td></tr>
+        <tr><td><c:out value="${dish.description}" /></td></tr>
     </c:forEach>
 	</table>
 	
 	<table>
     <c:forEach var="drink" items="${drinkList}" >
-        <tr><td><c:out value="${drink}" /></td></tr>
+        <tr><td><c:out value="${drink.name}" /></td></tr>
+        <tr><td><c:out value="${drink.price}" /></td></tr>
+        <tr><td><c:out value="${drink.description}" /></td></tr>
     </c:forEach>
 	</table>
 	
 	<table>
     <c:forEach var="desert" items="${desertList}" >
-        <tr><td><c:out value="${desert}" /></td></tr>
+        <tr><td><c:out value="${desert.name}" /></td></tr>
+        <tr><td><c:out value="${desert.price}" /></td></tr>
+        <tr><td><c:out value="${desert.description}" /></td></tr>
     </c:forEach>
 	</table>
 

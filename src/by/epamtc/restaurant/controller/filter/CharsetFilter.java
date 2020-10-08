@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.filter;
+package by.epamtc.restaurant.controller.filter;
 
 import java.io.IOException;
 

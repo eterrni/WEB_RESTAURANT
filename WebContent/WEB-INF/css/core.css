@@ -203,8 +203,9 @@ footer {
 .form-wrapper {
     width: 250px;
     height: 470px;
-    border: 3px solid cornsilk;   
     margin: 0 auto;
+    border: 3px solid rgb(88, 70, 46);
+    border-radius: 5%;
 }
 
 form {
@@ -233,7 +234,5 @@ form {
     background-color: cornsilk;
     border: 0;
     height: 40px;
-    width: 120px;
-    color: rgb(218, 160, 85);
     font-size: medium;
 }

@@ -5,13 +5,13 @@ import by.epamtc.restaurant.dao.UserDAO;
 import by.epamtc.restaurant.service.UserService;
 import by.epamtc.restaurant.service.exception.ServiceException;
 import by.epamtc.restaurant.service.exception.UserExistsServiceException;
+import by.epamtc.restaurant.service.validator.UserValidator;
 import by.epamtc.restaurant.dao.exception.DAOException;
 import by.epamtc.restaurant.dao.exception.UserExistsDAOException;
 import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.bean.user.UserAuthData;
 import by.epamtc.restaurant.bean.user.UserRegistrationData;
 import by.epamtc.restaurant.bean.user.UserUpdateData;
-import by.epamtc.restaurant.controller.validator.UserValidator;
 import by.epamtc.restaurant.dao.DAOFactory;
 
 public class UserServiceImpl implements UserService {

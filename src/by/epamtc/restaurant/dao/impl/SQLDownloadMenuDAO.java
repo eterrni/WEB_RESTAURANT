@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.epamtc.restaurant.bean.goods.desert.Desert;
 import by.epamtc.restaurant.bean.goods.dish.Dish;
 import by.epamtc.restaurant.bean.goods.drink.Drink;
@@ -17,7 +20,8 @@ import by.epamtc.restaurant.dao.impl.connection_pool.exception.ConnectionPoolExc
 
 public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 
-	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
+	private static final Logger logger = LogManager.getLogger(SQLDownloadMenuDAO.class);
 
 	private static final String SELECT_DISH = "SELECT * FROM rest_db.dishes";
 	private static final String SELECT_DRINK = "SELECT * FROM rest_db.drinks;";
@@ -52,17 +56,21 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 				dishList.add(dish);
 			}
 
-		} catch (SQLException | ConnectionPoolException e) {
-			throw new DAOException("Download dish exception", e);
+		} catch (SQLException e) {
+			logger.error("Download dishList sqlException");
+			throw new DAOException("Download dishList sqlException", e);
+		} catch (ConnectionPoolException e) {
+			logger.error("Download dishList connectionPoolException");
+			throw new DAOException("Download dishList connectionPoolException", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, st, rs);
 			} catch (ConnectionPoolException e) {
-				throw new DAOException("Error close connection", e);
+				logger.error("Download dishList error close connection");
+				throw new DAOException("Download dishList error close connection", e);
 			}
 		}
 
-		// TODO Auto-generated method stub
 		return dishList;
 	}
 
@@ -95,17 +103,21 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 				drinkList.add(drink);
 			}
 
-		} catch (SQLException | ConnectionPoolException e) {
-			throw new DAOException("Download dish exception", e);
+		} catch (SQLException e) {
+			logger.error("Download drinkList sqlException");
+			throw new DAOException("Download drinkList sqlException", e);
+		} catch (ConnectionPoolException e) {
+			logger.error("Download drinkList connectionPoolException");
+			throw new DAOException("Download drinkList connectionPoolException", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, st, rs);
 			} catch (ConnectionPoolException e) {
-				throw new DAOException("Error close connection", e);
+				logger.error("Download drinkList error close connection");
+				throw new DAOException("Download drinkList error close connection", e);
 			}
 		}
 
-		// TODO Auto-generated method stub
 		return drinkList;
 	}
 
@@ -138,17 +150,21 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 				desertList.add(desert);
 			}
 
-		} catch (SQLException | ConnectionPoolException e) {
-			throw new DAOException("Download dish exception", e);
+		} catch (SQLException e) {
+			logger.error("Download desertList sqlException");
+			throw new DAOException("Download desertList sqlException", e);
+		} catch (ConnectionPoolException e) {
+			logger.error("Download desertList connectionPoolException");
+			throw new DAOException("Download desertList connectionPoolException", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, st, rs);
 			} catch (ConnectionPoolException e) {
-				throw new DAOException("Error close connection", e);
+				logger.error("Download desertList error close connection");
+				throw new DAOException("Download desertList error close connection", e);
 			}
 		}
 
-		// TODO Auto-generated method stub
 		return desertList;
 	}
 

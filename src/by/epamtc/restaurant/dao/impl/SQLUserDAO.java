@@ -30,7 +30,7 @@ public class SQLUserDAO implements UserDAO {
 			+ "password, phone_number, age, email, users_role_id_role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 2)";
 	private static final String UPDATE_USER_DATA = "UPDATE `rest_db`.`users` SET `name` = ?, `surname` = ?, `patronymic` =?, `phone_number` = ?, `age` = ?, `email` = ? WHERE (`id_users` = ?);";
 	private static final String ROLE_ID_ADMINISTRATOR = "1";
-	
+
 	private static final Logger logger = LogManager.getLogger(SQLUserDAO.class);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@ public class SQLUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			logger.error("update - connection pool exception");
 			throw new DAOException("update - connection pool exception", e);
-			
+
 		} catch (SQLException e) {
 			logger.error("update - SQLException");
 			throw new DAOException("update - SQLException", e);

@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.controller.validator;
+package by.epamtc.restaurant.service.validator;
 
 import by.epamtc.restaurant.bean.user.UserAuthData;
 import by.epamtc.restaurant.bean.user.UserRegistrationData;
