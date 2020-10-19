@@ -7,16 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style><%@include file="/WEB-INF/css/reset.css"%></style>
-    <style><%@include file="/WEB-INF/css/core.css"%></style>
+    <style><%@include file="/front/css/reset.css"%></style>
+    <style><%@include file="/front/css/core.css"%></style>
 
 
     <fmt:setLocale value="${sessionScope.locale}"/>
 	
 	<fmt:setBundle basename="by.epamtc.restaurant.localization.local" var="loc"/>
 	
-		<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
+	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
+	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
@@ -52,10 +54,11 @@
  				</form>
                 </div>
                 <c:if test="${sessionScope.user != null}">
- 				Hello, ${sessionScope.user.name}
+ 				${hello}, ${sessionScope.user.name}
  				<ul>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
+                   <li><a href="Controller?command=go_to_order_page">${order}</a></li>
                 </ul>
  				</c:if>
  				
@@ -71,7 +74,7 @@
         <div class="header-down">
             <div class="header-down-box">
                 <div class="logo-box" onclick="">
-                    <img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo">
+                <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -100,7 +103,7 @@
             <div class="how-to-pay">
                 <p>${social_networks}</p>
                 <div class="social-logo">
-                    <img src="../img/icon-footer-instagram.png" alt="insta">
+                    <a href="http://instagram.com"><img src="front/img/icon-footer-instagram.png" alt="insta" /></a>
                 </div>
             </div>
         </div>

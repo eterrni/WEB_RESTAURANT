@@ -13,6 +13,7 @@ public class LogoutCommand implements Command {
 
 	private static final String WELCOME_PAGE = "Controller?command=go_to_welcome_page";
 	private static final String ATTRIBUTE_USER = "user";
+	private static final String ATTRIBUTE_ORDER = "order";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +22,8 @@ public class LogoutCommand implements Command {
 
 		if (session != null) {
 			session.removeAttribute(ATTRIBUTE_USER);
+			session.removeAttribute(ATTRIBUTE_ORDER);
+
 		}
 		response.sendRedirect(WELCOME_PAGE);
 	}

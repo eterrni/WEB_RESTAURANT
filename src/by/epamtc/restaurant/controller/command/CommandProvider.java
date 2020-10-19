@@ -3,20 +3,27 @@ package by.epamtc.restaurant.controller.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.epamtc.restaurant.controller.command.impl.GoToAboutUsPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToContactPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToErrorPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToLoginPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToMenuPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToPersonalAccountPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToRegistrationPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToStockPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToUpdateUserDataPageCommand;
-import by.epamtc.restaurant.controller.command.impl.GoToWelcomePageCommand;
 import by.epamtc.restaurant.controller.command.impl.LoginCommand;
 import by.epamtc.restaurant.controller.command.impl.LogoutCommand;
+import by.epamtc.restaurant.controller.command.impl.PlaceOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.RegistrationCommand;
 import by.epamtc.restaurant.controller.command.impl.UpdateUserDataCommand;
+import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDesertToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDishToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDrinkToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToAboutUsPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToContactPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToErrorPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToGratitudePageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToLoginPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToMenuPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToOrderPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToPersonalAccountPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToRegistrationPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToStockPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToUpdateUserDataPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToUserOrderPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToWelcomePageCommand;
 
 public class CommandProvider {
 
@@ -28,6 +35,7 @@ public class CommandProvider {
 		commands.put(ParameterName.REGISTRATION, new RegistrationCommand());
 		commands.put(ParameterName.LOGOUT, new LogoutCommand());
 		commands.put(ParameterName.UPDATE_USER_DATA, new UpdateUserDataCommand());
+		
 		commands.put(ParameterName.GO_TO_WELCOME_PAGE, new GoToWelcomePageCommand());
 		commands.put(ParameterName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
 		commands.put(ParameterName.GO_TO_REGISTRATION_PAGE, new GoToRegistrationPageCommand());
@@ -38,6 +46,14 @@ public class CommandProvider {
 		commands.put(ParameterName.GO_TO_CONTACT_PAGE, new GoToContactPageCommand());
 		commands.put(ParameterName.GO_TO_PERSONAL_ACCOUNT_PAGE, new GoToPersonalAccountPageCommand());
 		commands.put(ParameterName.GO_TO_UPDATE_USER_DATA_PAGE, new GoToUpdateUserDataPageCommand());
+		commands.put(ParameterName.GO_TO_ORDER_PAGE, new GoToOrderPageCommand());
+		commands.put(ParameterName.GO_TO_GRATITUDE_PAGE, new GoToGratitudePageCommand());
+		commands.put(ParameterName.GO_TO_USER_ORDER_PAGE, new GoToUserOrderPageCommand());
+		
+		commands.put(ParameterName.ADD_DISH_TO_ORDER, new AddDishToOrderCommand());
+		commands.put(ParameterName.ADD_DRINK_TO_ORDER, new AddDrinkToOrderCommand());
+		commands.put(ParameterName.ADD_DESERT_TO_ORDER, new AddDesertToOrderCommand());
+		commands.put(ParameterName.PLACE_ORDER, new PlaceOrderCommand());
 	}
 
 	public Command getCommand(String commandName) {

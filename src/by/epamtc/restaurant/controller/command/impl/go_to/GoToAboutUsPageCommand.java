@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.controller.command.impl;
+package by.epamtc.restaurant.controller.command.impl.go_to;
 
 import java.io.IOException;
 
@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamtc.restaurant.controller.command.Command;
 
-public class GoToWelcomePageCommand implements Command {
+public class GoToAboutUsPageCommand implements Command{
 
-	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
+	private static final String ABOUT_US_PAGE = "WEB-INF/jsp/about_us_page.jsp";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+		request.getRequestDispatcher(ABOUT_US_PAGE).forward(request, response);
 
 	}
 

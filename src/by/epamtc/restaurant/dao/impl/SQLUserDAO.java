@@ -54,7 +54,9 @@ public class SQLUserDAO implements UserDAO {
 
 			rs = ps.executeQuery();
 
-			if (rs.next()) {
+			if (!rs.next()) {
+				return null;
+			} else {
 
 				user = new User();
 
@@ -78,7 +80,6 @@ public class SQLUserDAO implements UserDAO {
 					user.setRole(Role.ADMINISTRATOR);
 				} else
 					user.setRole(Role.USER);
-
 			}
 		} catch (SQLException | ConnectionPoolException e) {
 			throw new DAOException("Authorization exception", e);
@@ -190,6 +191,12 @@ public class SQLUserDAO implements UserDAO {
 		} catch (SQLException e) {
 			logger.error("update - SQLException");
 			throw new DAOException("update - SQLException", e);
+		} finally {
+			try {
+				connectionPool.closeConnection(cn, ps);
+			} catch (ConnectionPoolException e) {
+				throw new DAOException("close_connectionPool_exception", e);
+			}
 		}
 		return false;
 	}

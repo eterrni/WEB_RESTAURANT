@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.controller.command.impl;
+package by.epamtc.restaurant.controller.command.impl.go_to;
 
 import java.io.IOException;
 

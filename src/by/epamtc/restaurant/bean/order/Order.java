@@ -1,18 +1,24 @@
 package by.epamtc.restaurant.bean.order;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import by.epamtc.restaurant.bean.goods.Goods;
 
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 8855300846389844573L;
 
 	private Integer id;
-	private String status;
+	private OrderStatus status;
 	private Date createDate;
-	private Integer orderMark;
-	
+
+	private List<Goods> orderList;
+
 	public Order() {
+		this.orderList = new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -23,11 +29,12 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-	public String getStatus() {
+
+	public OrderStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 
@@ -39,16 +46,12 @@ public class Order implements Serializable {
 		this.createDate = createDate;
 	}
 
-	public Integer getOrderMark() {
-		return orderMark;
+	public List<Goods> getOrderList() {
+		return orderList;
 	}
 
-	public void setOrderMark(Integer orderMark) {
-		this.orderMark = orderMark;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setOrderList(List<Goods> orderList) {
+		this.orderList = orderList;
 	}
 
 	@Override
@@ -57,7 +60,7 @@ public class Order implements Serializable {
 		int result = 1;
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((orderMark == null) ? 0 : orderMark.hashCode());
+		result = prime * result + ((orderList == null) ? 0 : orderList.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -81,10 +84,10 @@ public class Order implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (orderMark == null) {
-			if (other.orderMark != null)
+		if (orderList == null) {
+			if (other.orderList != null)
 				return false;
-		} else if (!orderMark.equals(other.orderMark))
+		} else if (!orderList.equals(other.orderList))
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -96,9 +99,8 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", status=" + status + ", createDate=" + createDate + ", orderMark=" + orderMark
+		return "Order [id=" + id + ", status=" + status + ", createDate=" + createDate + ", orderList=" + orderList
 				+ "]";
 	}
-	
-	
+
 }

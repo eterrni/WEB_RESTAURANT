@@ -27,6 +27,8 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 	private static final String SELECT_DRINK = "SELECT * FROM rest_db.drinks;";
 	private static final String SELECT_DESERT = "SELECT * FROM rest_db.deserts;";
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public List<Dish> downloadDish() throws DAOException {
 
@@ -74,6 +76,8 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 		return dishList;
 	}
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
 	@Override
 	public List<Drink> downloadDrink() throws DAOException {
 
@@ -120,6 +124,8 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 
 		return drinkList;
 	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public List<Desert> downloadDesert() throws DAOException {

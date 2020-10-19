@@ -8,16 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style><%@include file="/WEB-INF/css/reset.css"%></style>
-    <style><%@include file="/WEB-INF/css/core.css"%></style>
+    <style><%@include file="/front/css/reset.css"%></style>
+    <style><%@include file="/front/css/core.css"%></style>
 
 
     <fmt:setLocale value="${sessionScope.locale}"/>
 	
 	<fmt:setBundle basename="by.epamtc.restaurant.localization.local" var="loc"/>
 	
-		<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
+	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
+	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
@@ -54,10 +56,11 @@
  				
                 </div>
  				 <c:if test="${sessionScope.user != null}">
- 				Hello, ${sessionScope.user.name}
+ 				${hello}, ${sessionScope.user.name}
  				<ul>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
+                   <li><a href="Controller?command=go_to_order_page">${order}</a></li>
                 </ul>
  				</c:if>
  				
@@ -72,7 +75,7 @@
         <div class="header-down">
             <div class="header-down-box">
                 <div class="logo-box" onclick="">
-                    <img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo">
+                    <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -88,32 +91,76 @@
 <!-- END HEADER -->
 	<main>
 
-	<table>
-    <c:forEach var="dish" items="${dishList}" >
-        <tr><td><c:out value="${dish.name}" /></td></tr>
-        <tr><td><c:out value="${dish.price}" /></td></tr>
-        <tr><td><c:out value="${dish.description}" /></td></tr>
-    </c:forEach>
-	</table>
-	
-	<table>
-    <c:forEach var="drink" items="${drinkList}" >
-        <tr><td><c:out value="${drink.name}" /></td></tr>
-        <tr><td><c:out value="${drink.price}" /></td></tr>
-        <tr><td><c:out value="${drink.description}" /></td></tr>
-    </c:forEach>
-	</table>
-	
-	<table>
-    <c:forEach var="desert" items="${desertList}" >
-        <tr><td><c:out value="${desert.name}" /></td></tr>
-        <tr><td><c:out value="${desert.price}" /></td></tr>
-        <tr><td><c:out value="${desert.description}" /></td></tr>
-    </c:forEach>
-	</table>
+<div class="contant-wrapper">
+		<c:forEach var="dish" items="${dishList}" >
+            <div class="box">
+	                <div class="box-img"> 
+	                    <img src="https://i.artfile.ru/4200x2880_896995_[www.ArtFile.ru].jpg" alt="image">
+	                </div>
+	                <div class="box-text">
+	                    <div class="name"><p><c:out value="${dish.name}" /></p></div>
+	                    <div class="item-opis"><p><c:out value="${dish.description}" /></p></div>
+	                    <div class="price"><c:out value="${dish.price}" /></div>
+	                    <c:if test="${sessionScope.user != null}">
+	                    <div class="box-button">
+	                   	 <form action="Controller" method="post">
+	       					<input type="hidden" name="command" value="add_dish_to_order" />
+	        				<input type="hidden" name="id" value="${dish.id}" />
+	       			   	    <input type="submit" value="Добавить в заказ" />
+	       				 </form>
+	       			    </div>
+	        			</c:if>
+	                </div>
+            </div>
+        </c:forEach>
+       
+	 <c:forEach var="drink" items="${drinkList}" >
+            <div class="box">
+	                <div class="box-img"> 
+	                    <img src="https://i.artfile.ru/4200x2880_896995_[www.ArtFile.ru].jpg" alt="image">
+	                </div>
+	                <div class="box-text">
+	                    <div class="name"><p><c:out value="${drink.name}" /></p></div>
+	                    <div class="item-opis"><p><c:out value="${drink.description}" /></p></div>
+	                    <div class="price"><c:out value="${drink.price}" /></div>
+	                    <c:if test="${sessionScope.user != null}">
+	                    <div class="box-button">
+	                   	 <form action="Controller" method="post">
+	       					<input type="hidden" name="command" value="add_drink_to_order" />
+	        				<input type="hidden" name="id" value="${drink.id}" />
+	       			   	    <input type="submit" value="Добавить в заказ" />
+	       				 </form>
+	       			    </div>
+	        			</c:if>
+	                </div>
+            </div>
+     </c:forEach>
+
+	 <c:forEach var="desert" items="${desertList}" >
+            <div class="box">
+	                <div class="box-img"> 
+	                    <img src="https://i.artfile.ru/4200x2880_896995_[www.ArtFile.ru].jpg" alt="image">
+	                </div>
+	                <div class="box-text">
+	                    <div class="name"><p><c:out value="${desert.name}" /></p></div>
+	                    <div class="item-opis"><p><c:out value="${desert.description}" /></p></div>
+	                    <div class="price"><c:out value="${desert.price}" /></div>
+	                    <c:if test="${sessionScope.user != null}">
+	                    <div class="box-button">
+	                   	 <form action="Controller" method="post">
+	       					<input type="hidden" name="command" value="add_desert_to_order" />
+	        				<input type="hidden" name="id" value="${desert.id}" />
+	       			   	    <input type="submit" value="Добавить в заказ" />
+	       				 </form>
+	       			    </div>
+	        			</c:if>
+	                </div>
+            </div>
+     </c:forEach>
+</div>
 
 
-    </main>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">
@@ -126,7 +173,7 @@
             <div class="how-to-pay">
                 <p>${social_networks}</p>
                 <div class="social-logo">
-                    <img src="/img/icon-footer-instagram.png" alt="insta">
+                    <a href="http://instagram.com"><img src="front/img/icon-footer-instagram.png" alt="insta" /></a>
                 </div>
             </div>
         </div>

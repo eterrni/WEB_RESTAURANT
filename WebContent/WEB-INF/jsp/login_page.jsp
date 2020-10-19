@@ -7,8 +7,8 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-	<style><%@include file="/WEB-INF/css/reset.css"%></style>
-    <style><%@include file="/WEB-INF/css/core.css"%></style>
+	<style><%@include file="/front/css/reset.css"%></style>
+    <style><%@include file="/front/css/core.css"%></style>
     
     <fmt:setLocale value="${sessionScope.locale}"/>
 	
@@ -60,7 +60,7 @@
         <div class="header-down">
             <div class="header-down-box">
                 <div class="logo-box" onclick="">
-                    <img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo">
+                    <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -107,7 +107,7 @@
             <div class="how-to-pay">
                 <p>${social_networks}</p>
                 <div class="social-logo">
-                    <img src="/img/icon-footer-instagram.png" alt="insta">
+                    <a href="http://instagram.com"><img src="front/img/icon-footer-instagram.png" alt="insta" /></a>
                 </div>
             </div>
         </div>

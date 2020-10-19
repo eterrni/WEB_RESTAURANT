@@ -1,4 +1,4 @@
-package by.epamtc.restaurant.controller.command.impl;
+package by.epamtc.restaurant.controller.command.impl.go_to;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamtc.restaurant.controller.command.Command;
+import by.epamtc.restaurant.controller.command.impl.utility.DownloadMenuDataUtility;
 
 public class GoToMenuPageCommand implements Command {
 
@@ -19,8 +20,8 @@ public class GoToMenuPageCommand implements Command {
 		if (request.getSession().getAttribute("drinkList") == null
 				|| request.getSession().getAttribute("dishList") == null
 				|| request.getSession().getAttribute("desertList") == null) {
-			DownloadMenuDataCommand downloadMenuDataCommand = new DownloadMenuDataCommand();
-			downloadMenuDataCommand.execute(request, response);
+			DownloadMenuDataUtility downloadMenuDataUtility = DownloadMenuDataUtility.getInstance();
+			downloadMenuDataUtility.download(request, response);
 		}
 		request.getRequestDispatcher(MENU_PAGE).forward(request, response);
 
