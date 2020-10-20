@@ -30,22 +30,22 @@ public class DownloadUserOrderUtility {
 
 		HttpSession session = request.getSession();
 
-			User user = (User) session.getAttribute(ATTRIBUTE_USER);
-			Integer userId = user.getId();
+		User user = (User) session.getAttribute(ATTRIBUTE_USER);
+		Integer userId = user.getId();
 
-			try {
-				List<Order> userOrderList = downloadUserService.download(userId);
+		try {
+			List<Order> userOrderList = downloadUserService.download(userId);
 
-				if (session.getAttribute(ATTRIBUTE_USER_ORDER_LIST) != null) {
-					session.removeAttribute(ATTRIBUTE_USER_ORDER_LIST);
-				}
-
-				session.setAttribute(ATTRIBUTE_USER_ORDER_LIST, userOrderList);
-
-			} catch (ServiceException e) {
-				request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
-				response.sendRedirect(ERROR_PAGE);
+			if (session.getAttribute(ATTRIBUTE_USER_ORDER_LIST) != null) {
+				session.removeAttribute(ATTRIBUTE_USER_ORDER_LIST);
 			}
+
+			session.setAttribute(ATTRIBUTE_USER_ORDER_LIST, userOrderList);
+
+		} catch (ServiceException e) {
+			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
+			response.sendRedirect(ERROR_PAGE);
+		}
 	}
 
 	public static DownloadUserOrderUtility getInstance() {

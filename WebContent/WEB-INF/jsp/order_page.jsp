@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Order page</title>
 	<style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
     
@@ -17,11 +17,18 @@
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
+	
+	<fmt:message bundle="${loc}" key="local.order_page.order_list" var="order_list" />
+	<fmt:message bundle="${loc}" key="local.order_page.button" var="button" />
+	<fmt:message bundle="${loc}" key="local.order_page.empty_order_message_1" var="empty_order_message_1" />
+	<fmt:message bundle="${loc}" key="local.order_page.empty_order_message_2" var="empty_order_message_2" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -54,13 +61,17 @@
  				 <c:if test="${sessionScope.user != null}">
  				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
+ 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
+ 				</c:if>
+ 				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>
                 </ul>
  				</c:if>
  				
- 				<c:if test="${sessionScope.user == null }">
+ 				<c:if test="${sessionScope.user == null}">
  				<ul>
                    <li><a href="Controller?command=go_to_registration_page">${registration_button}</a></li>
                     <li><a href="Controller?command=go_to_login_page">${login_button}</a></li>
@@ -89,7 +100,7 @@
 <main>
 
 <c:if test="${sessionScope.order != null}" >
-	<h1>Order list:</h1>
+	<h1>${order_list}</h1>
 	<table>
     <c:forEach var="good" items="${sessionScope.order.orderList}" >
     <tr>
@@ -100,12 +111,12 @@
 	</table>
 		<form action="Controller" method ="post">
         <input type="hidden" name="command" value="place_order" />
-        <input type="submit" value="Оформить заказ" />
+        <input type="submit" value="${button}" />
         </form>
 </c:if>
 
 <c:if test = "${sessionScope.order == null}">
-<h1>Добавьте что-нибудь из <a href="Controller?command=go_to_menu_page">меню</a></h1>
+<h1>${empty_order_message_1} <a href="Controller?command=go_to_menu_page">${empty_order_message_2}</a></h1>
 </c:if>
 
 </main>

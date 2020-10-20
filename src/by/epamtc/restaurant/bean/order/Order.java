@@ -14,6 +14,7 @@ public class Order implements Serializable {
 	private Integer id;
 	private OrderStatus status;
 	private Date createDate;
+	private Integer userId;
 
 	private List<Goods> orderList;
 
@@ -23,6 +24,14 @@ public class Order implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public void setId(Integer id) {
@@ -62,6 +71,7 @@ public class Order implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((orderList == null) ? 0 : orderList.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -89,18 +99,22 @@ public class Order implements Serializable {
 				return false;
 		} else if (!orderList.equals(other.orderList))
 			return false;
-		if (status == null) {
-			if (other.status != null)
+		if (status != other.status)
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!status.equals(other.status))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", status=" + status + ", createDate=" + createDate + ", orderList=" + orderList
-				+ "]";
+		return "Order [id=" + id + ", status=" + status + ", createDate=" + createDate + ", userId=" + userId
+				+ ", orderList=" + orderList + "]";
 	}
+
+	
 
 }

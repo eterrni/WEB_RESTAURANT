@@ -19,9 +19,14 @@
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
+	
+	<fmt:message bundle="${loc}" key="local.gratitude_page.gratitude_message_1" var="gratitude_message_1" />
+	<fmt:message bundle="${loc}" key="local.gratitude_page.gratitude_message_2" var="gratitude_message_2" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -40,32 +45,27 @@
                 
                 <form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_about_us_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_gratitude_page" />
  				<button type="submit" >${ru_button}</button>
  				</form>
  				
  				<form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_about_us_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_gratitude_page" />
  				<button type="submit" >${en_button}</button>
  				</form>
  				
                 </div>
- 				 <c:if test="${sessionScope.user != null}">
  				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
+ 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
+ 				</c:if>
+ 				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>
                 </ul>
- 				</c:if>
- 				
- 				<c:if test="${sessionScope.user == null }">
- 				<ul>
-                   <li><a href="Controller?command=go_to_registration_page">${registration_button}</a></li>
-                    <li><a href="Controller?command=go_to_login_page">${login_button}</a></li>
-                </ul>
- 				</c:if>
             </div>
         </div>
         <div class="header-down">
@@ -86,7 +86,7 @@
     </header>
 <!-- END HEADER -->
 <main>
-<p>Спасибо за заказ, он будет взят в работу, как только администратор подтвердит его. Отследить изменение статуса заказа, можно на странице <a href="Controller?command=go_to_user_order_page">мои заказы</a></p>
+<p>${gratitude_message_1}<a href="Controller?command=go_to_user_order_page">${gratitude_message_2}</a></p>
 </main>
 		<!-- START FOOTER-->
     <footer>

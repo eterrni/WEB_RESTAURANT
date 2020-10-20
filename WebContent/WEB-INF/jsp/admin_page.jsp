@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style><%@include file="/front/css/reset.css"%></style>
+<meta charset="UTF-8">
+<title>Admin page</title>
+	<style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
-
-
+    
     <fmt:setLocale value="${sessionScope.locale}"/>
 	
 	<fmt:setBundle basename="by.epamtc.restaurant.localization.local" var="loc"/>
@@ -18,11 +17,9 @@
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
-	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
-	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
-	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
+	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
@@ -33,11 +30,9 @@
 	<fmt:message bundle="${loc}" key="local.welcome_page.work_time" var="work_time" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.address" var="address" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.social_networks" var="social_networks" />
-	
-	
 </head>
 <body>
-<!-- START HEADER -->
+		<!-- START HEADER -->
     <header>
         <div class="header-up">
             <div class="registr-box">
@@ -45,42 +40,31 @@
                 
                 <form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_welcome_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
  				<button type="submit" >${ru_button}</button>
  				</form>
  				
  				<form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_welcome_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
  				<button type="submit" >${en_button}</button>
  				</form>
+ 				
                 </div>
-                <c:if test="${sessionScope.user != null}">
  				${hello}, ${sessionScope.user.name}
  				<ul>
- 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
- 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
- 				</c:if>
+ 				   <li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
  				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>
                 </ul>
- 				</c:if>
- 				
- 				<c:if test="${sessionScope.user == null }">
- 				<ul>
-                   <li><a href="Controller?command=go_to_registration_page">${registration_button}</a></li>
-                    <li><a href="Controller?command=go_to_login_page">${login_button}</a></li>
-                </ul>
- 				</c:if>
- 				
             </div>
         </div>
         <div class="header-down">
             <div class="header-down-box">
                 <div class="logo-box" onclick="">
-                <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
+                    <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -94,9 +78,11 @@
         </div>
     </header>
 <!-- END HEADER -->
-    <main>
 
-    </main>
+<main>
+
+</main>
+
 <!-- START FOOTER-->
     <footer>
         <div class="footer-box">
@@ -115,5 +101,6 @@
         </div>
     </footer>
 <!-- END FOOTER-->
+		
 </body>
 </html>

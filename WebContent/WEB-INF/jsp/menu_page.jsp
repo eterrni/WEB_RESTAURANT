@@ -21,6 +21,8 @@
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
@@ -58,6 +60,10 @@
  				 <c:if test="${sessionScope.user != null}">
  				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
+ 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
+ 				</c:if>
+ 				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>

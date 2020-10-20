@@ -1,5 +1,6 @@
 package by.epamtc.restaurant.service;
 
+import by.epamtc.restaurant.service.impl.DownloadClientsOrderImpl;
 import by.epamtc.restaurant.service.impl.DownloadMenuImpl;
 import by.epamtc.restaurant.service.impl.DownloadUserOrderImpl;
 import by.epamtc.restaurant.service.impl.PlaceOrderImpl;
@@ -14,6 +15,7 @@ public class ServiceFactory {
 
 	private static final DownloadMenuService downloadMenuService = new DownloadMenuImpl();
 	private static final DownloadUserOrderService downloadUserOrderService = new DownloadUserOrderImpl();
+	private static final DownloadClientsOrderService downloadClientsOrderService = new DownloadClientsOrderImpl();
 
 	private static final PlaceOrderService placeOrderService = new PlaceOrderImpl();
 
@@ -31,6 +33,10 @@ public class ServiceFactory {
 
 	public DownloadMenuService getDownloadMenuService() {
 		return downloadMenuService;
+	}
+	
+	public DownloadClientsOrderService getDownloadClientsOrderService() {
+		return downloadClientsOrderService;
 	}
 
 	public PlaceOrderService getPlaceOrderService() {

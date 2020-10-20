@@ -13,8 +13,10 @@
 	
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	
 	
 	<fmt:message bundle="${loc}" key="local.error_page.message" var="message" />
 	<fmt:message bundle="${loc}" key="local.error_page.error_description" var="description" />
@@ -41,6 +43,9 @@
  				 <c:if test="${sessionScope.user != null}">
  				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
+ 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
+ 				</c:if>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>

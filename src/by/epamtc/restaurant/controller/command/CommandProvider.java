@@ -12,6 +12,7 @@ import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDesertToOrde
 import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDishToOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDrinkToOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToAboutUsPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToAdminPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToContactPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToErrorPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToGratitudePageCommand;
@@ -49,6 +50,7 @@ public class CommandProvider {
 		commands.put(ParameterName.GO_TO_ORDER_PAGE, new GoToOrderPageCommand());
 		commands.put(ParameterName.GO_TO_GRATITUDE_PAGE, new GoToGratitudePageCommand());
 		commands.put(ParameterName.GO_TO_USER_ORDER_PAGE, new GoToUserOrderPageCommand());
+		commands.put(ParameterName.GO_TO_ADMIN_PAGE, new GoToAdminPageCommand());
 		
 		commands.put(ParameterName.ADD_DISH_TO_ORDER, new AddDishToOrderCommand());
 		commands.put(ParameterName.ADD_DRINK_TO_ORDER, new AddDrinkToOrderCommand());
