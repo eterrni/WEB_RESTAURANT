@@ -95,6 +95,13 @@ main {
 	border-bottom: 2px solid cornsilk;
 }
 
+.main2 {
+	height: 100vh;
+	width: 100%;
+	background-color: burlywood;
+	border-bottom: 2px solid cornsilk;
+}
+
 .login-wrapper {
 	padding-top: 50px;
 }

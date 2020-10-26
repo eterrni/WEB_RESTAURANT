@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin page</title>
+<title>Insert title here</title>
 	<style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
     
@@ -17,11 +17,24 @@
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
-	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
+	
+	<fmt:message bundle="${loc}" key="local.clients_page.client_id" var="client_id" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_name" var="client_name" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_surname" var="client_surname" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_patronymic" var="client_patronymic" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_phoneNumber" var="client_phoneNumber" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_age" var="client_age" />
+	<fmt:message bundle="${loc}" key="local.clients_page.client_email" var="client_email" />
+	<fmt:message bundle="${loc}" key="local.clients_page.button" var="button" />
+	
+	
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -40,13 +53,13 @@
                 
                 <form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_clients_page" />
  				<button type="submit" >${ru_button}</button>
  				</form>
  				
  				<form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_clients_page" />
  				<button type="submit" >${en_button}</button>
  				</form>
  				
@@ -78,18 +91,24 @@
         </div>
     </header>
 <!-- END HEADER -->
-
 <div class="main2">
 
-	<a href="Controller?command=go_to_unconfirmed_order_page">Unсonfirmed orders</a><br>
-	<a href="Controller?command=go_to_confirmed_order_page">Confirmed orders</a><br>
-	<a href="Controller?command=go_to_clients_page">Clients</a><br>
-	<a href="Controller?command=go_to_employees_page">Employees</a><br>
-	<a href="Controller?command=go_to_payments_page">Payments</a><br>
-	
+<c:forEach var="client" items="${sessionScope.clients_list}" >
+		  <p>${client_id} <c:out value="${client.id}" /></p>
+	      <p>${client_name} <c:out value="${client.name}" /></p>
+	      <p>${client_surname} <c:out value="${client.surname}" /></p>
+	      <p>${client_patronymic} <c:out value="${client.patronymic}" /></p>
+	      <p>${client_phoneNumber} <c:out value="${client.phoneNumber}" /></p>
+	      <p>${client_age} <c:out value="${client.age}" /></p>
+	      <p>${client_email} <c:out value="${client.email}" /></p>
+	      <br><form action="Controller" method="post">
+	      <input type="hidden" name="command" value="appoint_an_administrator">
+	      <input type="hidden" name="user_id" value="${client.id}" />
+	      <input type="submit" value="${button}"/>
+	      </form>
+</c:forEach>
 </div>
-
-<!-- START FOOTER-->
+		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">
             <div class="time-work">

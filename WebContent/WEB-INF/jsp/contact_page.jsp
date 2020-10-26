@@ -91,9 +91,9 @@
         </div>
     </header>
 <!-- END HEADER -->
-<main>
+<div class="main2">
 <h1>CONTACT PAGE</h1>
-</main>
+</div>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

@@ -1,6 +1,7 @@
 package by.epamtc.restaurant.dao;
 
-import by.epamtc.restaurant.dao.impl.SQLDownloadClientsOrderDAO;
+import by.epamtc.restaurant.dao.impl.SQLAdminDAO;
+import by.epamtc.restaurant.dao.impl.SQLDownloadAdminInfoDAO;
 import by.epamtc.restaurant.dao.impl.SQLDownloadMenuDAO;
 import by.epamtc.restaurant.dao.impl.SQLDownloadUserOrderDAO;
 import by.epamtc.restaurant.dao.impl.SQLUserDAO;
@@ -10,9 +11,11 @@ public class DAOFactory {
 	private static final DAOFactory instance = new DAOFactory();
 
 	private static final UserDAO sqlUserDAO = new SQLUserDAO();
+	private static final AdminDAO sqlAdminDAO = new SQLAdminDAO();
+	
 	private static final DownloadMenuDAO downloadMenuDAO = new SQLDownloadMenuDAO();
 	private static final DownloadUserOrderDAO downloadUserOrderDAO = new SQLDownloadUserOrderDAO();
-	private static final DownloadClientsOrderDAO downloadClientsOrderDAO = new SQLDownloadClientsOrderDAO();
+	private static final DownloadAdminInfoDAO downloadAdminInfoDAO = new SQLDownloadAdminInfoDAO();
 
 	public static DAOFactory getInstance() {
 		return instance;
@@ -21,13 +24,17 @@ public class DAOFactory {
 	public UserDAO getUserDAO() {
 		return sqlUserDAO;
 	}
+	
+	public AdminDAO getAdminDAO() {
+		return sqlAdminDAO;
+	}
 
 	public DownloadMenuDAO getDownloadMenuDAO() {
 		return downloadMenuDAO;
 	}
 
-	public DownloadClientsOrderDAO getDownloadClientsOrderDAO() {
-		return downloadClientsOrderDAO;
+	public DownloadAdminInfoDAO getDownloadAdminInfoDAO() {
+		return downloadAdminInfoDAO;
 	}
 
 	public DownloadUserOrderDAO getDownloadUserOrderDAO() {

@@ -20,8 +20,10 @@ public class GoToMenuPageCommand implements Command {
 		if (request.getSession().getAttribute("drinkList") == null
 				|| request.getSession().getAttribute("dishList") == null
 				|| request.getSession().getAttribute("desertList") == null) {
+			
 			DownloadMenuDataUtility downloadMenuDataUtility = DownloadMenuDataUtility.getInstance();
 			downloadMenuDataUtility.download(request, response);
+			
 		}
 		request.getRequestDispatcher(MENU_PAGE).forward(request, response);
 

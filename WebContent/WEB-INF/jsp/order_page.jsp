@@ -97,14 +97,14 @@
     </header>
 <!-- END HEADER -->
 
-<main>
+<div class="main2">
 
 <c:if test="${sessionScope.order != null}" >
 	<h1>${order_list}</h1>
 	<table>
     <c:forEach var="good" items="${sessionScope.order.orderList}" >
     <tr>
-        <td><c:out value="${good.name}" /></td>
+        <td><c:out value="${good.name} " /></td>
         <td><c:out value="${good.price}" /></td>
     </tr>
     </c:forEach>
@@ -119,7 +119,7 @@
 <h1>${empty_order_message_1} <a href="Controller?command=go_to_menu_page">${empty_order_message_2}</a></h1>
 </c:if>
 
-</main>
+</div>
 
 		<!-- START FOOTER-->
     <footer>

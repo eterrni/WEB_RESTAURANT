@@ -25,6 +25,10 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_id" var="order_id" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_date" var="order_date" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_status" var="order_status" />
+	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.about_us" var="about_us" />
@@ -83,18 +87,18 @@
     </header>
 <!-- END HEADER -->
 
-<main>
+<div class="main2">
 	<c:forEach var="order" items="${sessionScope.user_order_list}" >
-        <p><c:out value="${order.id}" /></p>
-        <p><c:out value="${order.createDate}" /></p>
-        <c:if test="${order.status eq 'CONFIRMED'}">
-                <p style="color:green"><c:out value="${order.status}" /></p>
+        <p>${order_id} <c:out value="${order.id}" /></p>
+        <p>${order_date} <c:out value="${order.createDate}" /></p>
+        <c:if test="${order_status eq 'CONFIRMED'}">
+                <p style="color:green">${order_status} <c:out value="${order.status}" /></p>
         </c:if>
-        <c:if test="${order.status eq 'NOT_CONFIRMED'}">
-                <p style="color:red"><c:out value="${order.status}" /></p>
+        <c:if test="${order_status eq 'NOT_CONFIRMED'}">
+                <p style="color:red">${order_status} <c:out value="${order.status}" /></p>
         </c:if>
 	</c:forEach>
-</main>
+</div>
 
 <!-- START FOOTER-->
     <footer>

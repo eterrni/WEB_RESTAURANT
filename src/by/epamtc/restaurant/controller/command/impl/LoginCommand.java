@@ -64,8 +64,8 @@ public class LoginCommand implements Command {
 			logger.error(LOGGER_MESSAGE);
 			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
 			page = ERROR_PAGE;
+		} finally {
+			response.sendRedirect(page);
 		}
-
-		response.sendRedirect(page);
 	}
 }

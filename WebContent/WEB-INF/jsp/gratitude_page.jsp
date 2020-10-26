@@ -85,9 +85,9 @@
         </div>
     </header>
 <!-- END HEADER -->
-<main>
-<p>${gratitude_message_1}<a href="Controller?command=go_to_user_order_page">${gratitude_message_2}</a></p>
-</main>
+<div class="main2">
+<p>${gratitude_message_1} <a href="Controller?command=go_to_user_order_page">${gratitude_message_2}</a></p>
+</div>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

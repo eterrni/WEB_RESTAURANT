@@ -102,7 +102,7 @@
         </div>
     </header>
 <!-- END HEADER -->
-<main>
+<div class="main2">
 
 		<form action="Controller" method="post" >
 		
@@ -125,7 +125,7 @@
         <input type="submit" value="${button}" />
         </form>
         
-</main>
+</div>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

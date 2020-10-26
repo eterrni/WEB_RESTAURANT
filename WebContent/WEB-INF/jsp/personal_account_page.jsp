@@ -97,7 +97,7 @@
         </div>
     </header>
 <!-- END HEADER -->
-<main>
+<div class="main2">
 		<h4>${my_data}</h4>
 		<p>${name}: ${sessionScope.user.name}</p>
 		<p>${surname}: ${sessionScope.user.surname}</p>
@@ -117,7 +117,7 @@
         <c:if test="${sessionScope.update_message eq 'unsuccessful_update_data'}">
           <p style="color:red">${unsuccessful_update}</p>
         </c:if>
-</main>
+</div>
 <!-- START FOOTER-->
     <footer>
         <div class="footer-box">

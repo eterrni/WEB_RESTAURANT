@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin page</title>
+<title>Confirmed order page</title>
 	<style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
     
@@ -17,11 +17,19 @@
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
-	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
+	
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_id" var="order_id" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_date" var="order_date" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.order_status" var="order_status" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.user_id" var="user_id" />
+	
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -40,13 +48,13 @@
                 
                 <form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_confirmed_order_page" />
  				<button type="submit" >${ru_button}</button>
  				</form>
  				
  				<form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_admin_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_confirmed_order_page" />
  				<button type="submit" >${en_button}</button>
  				</form>
  				
@@ -78,18 +86,16 @@
         </div>
     </header>
 <!-- END HEADER -->
-
 <div class="main2">
 
-	<a href="Controller?command=go_to_unconfirmed_order_page">Unсonfirmed orders</a><br>
-	<a href="Controller?command=go_to_confirmed_order_page">Confirmed orders</a><br>
-	<a href="Controller?command=go_to_clients_page">Clients</a><br>
-	<a href="Controller?command=go_to_employees_page">Employees</a><br>
-	<a href="Controller?command=go_to_payments_page">Payments</a><br>
-	
+<c:forEach var="order" items="${sessionScope.confirmed_clients_order_list}" >
+		  <p>${order_id} <c:out value="${order.id}" /></p>
+	      <p style="color:green">${order_status} <c:out value="${order.status}" /></p>
+	      <p>${order_date} <c:out value="${order.createDate}" /></p>
+	      <p>${user_id} <c:out value="${order.userId}" /></p>
+</c:forEach>
 </div>
-
-<!-- START FOOTER-->
+		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">
             <div class="time-work">

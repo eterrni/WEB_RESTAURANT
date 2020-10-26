@@ -77,7 +77,7 @@
         </div>
     </header>
 <!-- END HEADER -->
-<main>
+<div class="main2">
 		<h1>${message}</h1>
 		<h3>${description}</h3>
 		<p>${requestScope.error.message}</p>
@@ -94,7 +94,7 @@
 		<input type="hidden" name="name_jsp" value="error_page.jsp" />
 		<input type="submit" name="local" value="${en_button}" />
 		</form>
-</main>
+</div>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

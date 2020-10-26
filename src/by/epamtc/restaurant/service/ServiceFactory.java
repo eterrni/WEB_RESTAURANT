@@ -1,6 +1,7 @@
 package by.epamtc.restaurant.service;
 
-import by.epamtc.restaurant.service.impl.DownloadClientsOrderImpl;
+import by.epamtc.restaurant.service.impl.AdminServiceImpl;
+import by.epamtc.restaurant.service.impl.DownloadAdminInfoImpl;
 import by.epamtc.restaurant.service.impl.DownloadMenuImpl;
 import by.epamtc.restaurant.service.impl.DownloadUserOrderImpl;
 import by.epamtc.restaurant.service.impl.PlaceOrderImpl;
@@ -11,11 +12,12 @@ public class ServiceFactory {
 
 	private static final ServiceFactory instance = new ServiceFactory();
 
+	private static final AdminService adminService = new AdminServiceImpl();
 	private static final UserService userService = new UserServiceImpl();
 
 	private static final DownloadMenuService downloadMenuService = new DownloadMenuImpl();
 	private static final DownloadUserOrderService downloadUserOrderService = new DownloadUserOrderImpl();
-	private static final DownloadClientsOrderService downloadClientsOrderService = new DownloadClientsOrderImpl();
+	private static final DownloadAdminInfoService downloadAdminInfoService = new DownloadAdminInfoImpl();
 
 	private static final PlaceOrderService placeOrderService = new PlaceOrderImpl();
 
@@ -23,6 +25,10 @@ public class ServiceFactory {
 		return instance;
 	}
 
+	public AdminService getAdminService() {
+		return adminService;
+	}
+	
 	public UserService getUserService() {
 		return userService;
 	}
@@ -35,8 +41,8 @@ public class ServiceFactory {
 		return downloadMenuService;
 	}
 	
-	public DownloadClientsOrderService getDownloadClientsOrderService() {
-		return downloadClientsOrderService;
+	public DownloadAdminInfoService getDownloadAdminInfoService() {
+		return downloadAdminInfoService;
 	}
 
 	public PlaceOrderService getPlaceOrderService() {

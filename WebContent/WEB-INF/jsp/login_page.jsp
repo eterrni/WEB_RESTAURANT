@@ -74,7 +74,7 @@
         </div>
     </header>
 <!-- END HEADER -->
-	<main>
+	<div class="main2">
         <div class="login-wrapper">
             <div class="enter-account">
                 <form action="Controller" method="post">
@@ -94,7 +94,7 @@
             	
             </div>
         </div>
-    </main>
+    </div>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

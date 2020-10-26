@@ -18,8 +18,8 @@ import by.epamtc.restaurant.dao.DAOFactory;
 
 public class UserServiceImpl implements UserService {
 
-	private static final DAOFactory instance = DAOFactory.getInstance();
-	private static final UserDAO userDAO = instance.getUserDAO();
+	private static final DAOFactory factory = DAOFactory.getInstance();
+	private static final UserDAO userDAO = factory.getUserDAO();
 	private static final UserValidator validator = UserValidator.getInstance();
 
 	@Override
