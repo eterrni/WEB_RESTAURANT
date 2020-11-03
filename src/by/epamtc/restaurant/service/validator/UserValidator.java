@@ -12,9 +12,9 @@ public class UserValidator {
 	private static final String PASSWORD_REGEXP = "((?=.*\\d)(?=.*[a-zA-Z]).{5,15})";
 	private static final String PHONE_REGEXP = "^[0-9\\(\\)-+\\s]+$";
 	private static final String EMAIL_REGEXP = "^[\\w.-_]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}$";
-	
+
 	private static final UserValidator instance = new UserValidator();
-	
+
 	public static UserValidator getInstance() {
 		return instance;
 	}

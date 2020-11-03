@@ -25,11 +25,12 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_id" var="order_id" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_date" var="order_date" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_status" var="order_status" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.user_id" var="user_id" />
-	
+	<fmt:message bundle="${loc}" key="local.user_order_page.detail_order_button" var="detail_order_button" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -88,12 +89,30 @@
 <!-- END HEADER -->
 <div class="main2">
 
-<c:forEach var="order" items="${sessionScope.confirmed_clients_order_list}" >
-		  <p>${order_id} <c:out value="${order.id}" /></p>
-	      <p style="color:green">${order_status} <c:out value="${order.status}" /></p>
-	      <p>${order_date} <c:out value="${order.createDate}" /></p>
-	      <p>${user_id} <c:out value="${order.userId}" /></p>
-</c:forEach>
+<table width="100%">
+	<tr>
+		<th>${order_id}</th>
+		<th>${order_status}</th>
+		<th>${order_date}</th>
+		<th>${user_id}</th>
+	</tr>
+	
+	<c:forEach var="order" items="${sessionScope.confirmed_clients_order_list}" >
+	<tr>
+		<th>${order.id}</th>
+		<th> <p style="color:green">${order.status}</p> </th>
+		<th>${order.createDate}</th>
+		<th>${order.userId}</th>
+		<th><form action="Controller" method="post">
+        	<input type="hidden" name="order_id" value="${order.id}" />
+        	<input type="hidden" name="command" value="print_order_detail" />
+        	<input type="submit" value="${detail_order_button}" />
+        	</form>
+		</th>
+	</tr>
+	</c:forEach>
+
+</table>
 </div>
 		<!-- START FOOTER-->
     <footer>

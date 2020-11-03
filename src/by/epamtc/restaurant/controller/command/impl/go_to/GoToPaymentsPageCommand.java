@@ -5,15 +5,40 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.controller.command.Command;
+import by.epamtc.restaurant.controller.command.impl.utility.DownloadAdminInfoUtility;
 
-public class GoToPaymentsPageCommand implements Command{
+public class GoToPaymentsPageCommand implements Command {
+
+	private static final DownloadAdminInfoUtility downloadAdminInfoUtility = DownloadAdminInfoUtility.getInstance();
+	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
+	private static final String PAYMENT_PAGE = "WEB-INF/jsp/admin/payments_page.jsp";
+
+	private static final String ATTRIBUTE_PAYMENTS_LIST = "payments_list";
+	private static final String ATTRIBUTE_USER = "user";
+
+	private static final Integer USER_ROLE_ID = 2;
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute(ATTRIBUTE_USER);
+
+		if (user == null || user.getRole().getRoleId() == USER_ROLE_ID) {
+			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+		} else {
+
+			downloadAdminInfoUtility.downloadPaymentList(request, response);
+
+			request.getRequestDispatcher(PAYMENT_PAGE).forward(request, response);
+
+			session.removeAttribute(ATTRIBUTE_PAYMENTS_LIST);
+
+		}
+
 	}
 
 }

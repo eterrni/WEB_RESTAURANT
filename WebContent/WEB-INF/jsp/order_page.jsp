@@ -27,6 +27,9 @@
 	
 	<fmt:message bundle="${loc}" key="local.order_page.order_list" var="order_list" />
 	<fmt:message bundle="${loc}" key="local.order_page.button" var="button" />
+	<fmt:message bundle="${loc}" key="local.order_page.goods_name" var="goods_name" />
+	<fmt:message bundle="${loc}" key="local.order_page.goods_price" var="goods_price" />
+	<fmt:message bundle="${loc}" key="local.order_page.remove_goods_from_order_button" var="remove_goods_from_order_button" />
 	<fmt:message bundle="${loc}" key="local.order_page.empty_order_message_1" var="empty_order_message_1" />
 	<fmt:message bundle="${loc}" key="local.order_page.empty_order_message_2" var="empty_order_message_2" />
 	
@@ -97,29 +100,50 @@
     </header>
 <!-- END HEADER -->
 
-<div class="main2">
-
+<main>
 <c:if test="${sessionScope.order != null}" >
-	<h1>${order_list}</h1>
-	<table>
-    <c:forEach var="good" items="${sessionScope.order.orderList}" >
-    <tr>
-        <td><c:out value="${good.name} " /></td>
-        <td><c:out value="${good.price}" /></td>
-    </tr>
-    </c:forEach>
-	</table>
-		<form action="Controller" method ="post">
-        <input type="hidden" name="command" value="place_order" />
-        <input type="submit" value="${button}" />
-        </form>
+        <div class="order-list">
+            <div class="order-list-title">
+                <p>${order_list}</p>
+            </div>
+            <div class="box-wrap">
+                <div class="name-box">
+                    <p>${goods_name}</p>
+                </div>
+                <div class="price-box">
+                    <p>${goods_price}</p>
+                </div>
+            </div>
+            <c:forEach var="goods" items="${sessionScope.order.orderList}" >
+            <div class="order-list-box">
+                <div class="name-food">
+                    <p>${goods.name}</p>
+                </div>
+                <div class="price-food">
+                    <p>${goods.price}</p>
+                </div>
+                <div class="delete-button">
+                    	<form action="Controller" method="post">
+						<input type="hidden" name="command" value="remove_goods_from_order" />
+						<input type="hidden" name="remove_goods_name" value="${goods.name}" />
+						<input type="submit" class="button" value="${remove_goods_from_order_button}" />
+			</form>
+                </div>
+            </div>
+	</c:forEach>
+            <div class="arrange-order">
+                <form action="Controller" method ="post">
+       		<input type="hidden" name="command" value="place_order" />
+        	<input type="submit" class="arrange-order-button" value="${button}" />
+       		</form>
+            </div>
+        </div>
 </c:if>
 
 <c:if test = "${sessionScope.order == null}">
 <h1>${empty_order_message_1} <a href="Controller?command=go_to_menu_page">${empty_order_message_2}</a></h1>
 </c:if>
-
-</div>
+</main>
 
 		<!-- START FOOTER-->
     <footer>

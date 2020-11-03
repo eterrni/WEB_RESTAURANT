@@ -91,20 +91,36 @@
 <!-- END HEADER -->
 <div class="main2">
 
-<c:forEach var="employee" items="${sessionScope.employees_list}" >
-		  <p>${employee_id} <c:out value="${employee.id}" /></p>
-	      <p>${employee_name} <c:out value="${employee.name}" /></p>
-	      <p>${employee_surname} <c:out value="${employee.surname}" /></p>
-	      <p>${employee_patronymic} <c:out value="${employee.patronymic}" /></p>
-	      <p>${employee_phoneNumber} <c:out value="${employee.phoneNumber}" /></p>
-	      <p>${employee_age} <c:out value="${employee.age}" /></p>
-	      <p>${employee_email} <c:out value="${employee.email}" /></p>
-	      <br><form action="Controller" method="post">
+<table width="100%">
+	<tr>
+		<th>${employee_id}</th>
+		<th>${employee_name}</th>
+		<th>${employee_surname}</th>
+		<th>${employee_patronymic}</th>
+		<th>${employee_phoneNumber}</th>
+		<th>${employee_age}</th>
+		<th>${employee_email}</th>
+	</tr>
+	
+  <c:forEach var="employee" items="${sessionScope.employees_list}" >
+	<tr>
+		<th>${employee.id}</th>
+		<th>${employee.name}</th>
+		<th>${employee.surname}</th>
+		<th>${employee.patronymic}</th>
+		<th>${employee.phoneNumber}</th>
+		<th>${employee.age}</th>
+		<th>${employee.email}</th>
+		<th><form action="Controller" method="post">
 	      <input type="hidden" name="command" value="appoint_an_user">
 	      <input type="hidden" name="employee_id" value="${employee.id}" />
 	      <input type="submit" value="${button}"/>
 	      </form>
-</c:forEach>
+	    </th>
+	</tr>
+  </c:forEach>
+</table>
+
 </div>
 		<!-- START FOOTER-->
     <footer>

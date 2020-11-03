@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import by.epamtc.restaurant.controller.command.Command;
 import by.epamtc.restaurant.controller.command.impl.utility.DownloadUserOrderUtility;
 
-public class GoToUserOrderPageCommand implements Command {
+public class GoToUserPaymentPageCommand implements Command {
 
-	private static final String USER_ORDER_PAGE = "WEB-INF/jsp/user_order_page.jsp";
+	private static final String USER_PAYMENT_PAGE = "WEB-INF/jsp/user_payment_page.jsp";
 	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
 
 	private static final String ATTRIBUTE_USER = "user";
@@ -24,12 +24,13 @@ public class GoToUserOrderPageCommand implements Command {
 		if (request.getSession().getAttribute(ATTRIBUTE_USER) != null) {
 			response.setContentType(CONTENT_TYPE);
 
-			downloadUtility.downloadUserOrderList(request, response);
+			downloadUtility.downloadUserPaymentList(request, response);
 
-			request.getRequestDispatcher(USER_ORDER_PAGE).forward(request, response);
+			request.getRequestDispatcher(USER_PAYMENT_PAGE).forward(request, response);
 		} else {
 			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 		}
+
 	}
 
 }

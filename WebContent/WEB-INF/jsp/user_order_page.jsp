@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 	<style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
@@ -28,6 +28,8 @@
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_id" var="order_id" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_date" var="order_date" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_status" var="order_status" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.my_orders" var="my_orders" />
+	<fmt:message bundle="${loc}" key="local.user_order_page.detail_order_button" var="detail_order_button" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -87,18 +89,38 @@
     </header>
 <!-- END HEADER -->
 
-<div class="main2">
+<main>
+	<table width="100%">
+	<caption>${my_orders}</caption>
+	
+	<tr>
+		<th>${order_id}</th>
+		<th>${order_date}</th>
+		<th>${order_status}</th>
+	</tr>
+	
 	<c:forEach var="order" items="${sessionScope.user_order_list}" >
-        <p>${order_id} <c:out value="${order.id}" /></p>
-        <p>${order_date} <c:out value="${order.createDate}" /></p>
-        <c:if test="${order_status eq 'CONFIRMED'}">
-                <p style="color:green">${order_status} <c:out value="${order.status}" /></p>
-        </c:if>
-        <c:if test="${order_status eq 'NOT_CONFIRMED'}">
-                <p style="color:red">${order_status} <c:out value="${order.status}" /></p>
-        </c:if>
+	<tr>
+		<th>${order.id}</th>
+		<th>${order.createDate}</th>
+		<th><c:if test="${order.status eq 'CONFIRMED'}">
+			<p style="color:green">${order.status}</p>
+			</c:if>
+		
+			<c:if test="${order.status eq 'NOT_CONFIRMED'}">
+			<p style="color:red">${order.status}</p>
+			</c:if>
+		</th>
+		<th><form action="Controller" method="post">
+        	<input type="hidden" name="order_id" value="${order.id}" />
+        	<input type="hidden" name="command" value="print_order_detail" />
+        	<input type="submit" value="${detail_order_button}" />
+        	</form>
+		</th>
+	</tr>
 	</c:forEach>
-</div>
+</table>
+</main>
 
 <!-- START FOOTER-->
     <footer>

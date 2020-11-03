@@ -14,8 +14,8 @@ import by.epamtc.restaurant.bean.goods.Goods;
 import by.epamtc.restaurant.bean.order.Order;
 import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.controller.command.Command;
-import by.epamtc.restaurant.service.PlaceOrderService;
 import by.epamtc.restaurant.service.ServiceFactory;
+import by.epamtc.restaurant.service.UserFeaturesService;
 import by.epamtc.restaurant.service.exception.ServiceException;
 
 public class PlaceOrderCommand implements Command {
@@ -24,29 +24,33 @@ public class PlaceOrderCommand implements Command {
 	public static final String WELCOME_PAGE = "Controller?command=go_to_welcome_page";
 	private static final String ERROR_PAGE = "Controller?command=go_to_error_page";
 
+	private static final String ATTRIBUTE_USER = "user";
+	private static final String ATTRIBUTE_ORDER = "order";
 	private static final String ATTRIBUTE_ERROR = "error";
 	private static final String LOGGER_MESSAGE = "PlaceOrderCommand exception";
 
 	private static final Logger logger = LogManager.getLogger(LoginCommand.class);
 
 	public static final ServiceFactory factory = ServiceFactory.getInstance();
-	public static final PlaceOrderService placeOrderImpl = factory.getPlaceOrderService();
+	public static final UserFeaturesService userFeaturesService = factory.getUserFeaturesService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String page;
+		String page = null;
 
-		if (request.getSession().getAttribute("user") != null) {
+		if (request.getSession().getAttribute(ATTRIBUTE_USER) != null) {
 			try {
 
-				User user = (User) request.getSession().getAttribute("user");
+				User user = (User) request.getSession().getAttribute(ATTRIBUTE_USER);
 				Integer userId = user.getId();
 
-				Order order = (Order) request.getSession().getAttribute("order");
+				Order order = (Order) request.getSession().getAttribute(ATTRIBUTE_ORDER);
 				List<Goods> orderList = order.getOrderList();
 
-				placeOrderImpl.placeOrder(userId, orderList);
+				userFeaturesService.placeOrder(userId, orderList);
+				
+				page = GRATITUDE_PAGE;
 
 			} catch (ServiceException e) {
 				logger.error(LOGGER_MESSAGE);
@@ -54,11 +58,10 @@ public class PlaceOrderCommand implements Command {
 				page = ERROR_PAGE;
 			}
 
-			page = GRATITUDE_PAGE;
 		} else {
 			page = WELCOME_PAGE;
 		}
-		
+
 		response.sendRedirect(page);
 	}
 }

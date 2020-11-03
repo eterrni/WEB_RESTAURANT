@@ -79,8 +79,8 @@
             <div class="enter-account">
                 <form action="Controller" method="post">
 				<input type="hidden" name="command" value="login" /> 
-				<input type="text" name="login" value="" placeholder="${login_message}" /><br> 
-				<input type="password" name="password" value="" placeholder="${password_message}"/><br>
+				<input type="text" name="login" value="" placeholder="${login_message}" required/><br> 
+				<input type="password" name="password" value="" placeholder="${password_message}" required/><br>
 				<input type="submit" value="${button}" />
 				</form>
 				

@@ -12,8 +12,7 @@ import by.epamtc.restaurant.controller.command.Command;
 import by.epamtc.restaurant.controller.command.impl.utility.DownloadAdminInfoUtility;
 
 public class GoToConfirmedOrderPageCommand implements Command {
-	private static final DownloadAdminInfoUtility downloadClientsOrderUtility = DownloadAdminInfoUtility
-			.getInstance();
+	private static final DownloadAdminInfoUtility downloadAdminInfoUtility = DownloadAdminInfoUtility.getInstance();
 	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
 	private static final String CONFIRMED_ORDER_PAGE = "WEB-INF/jsp/admin/confirmed_order_page.jsp";
 
@@ -32,7 +31,7 @@ public class GoToConfirmedOrderPageCommand implements Command {
 			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 		} else {
 
-			downloadClientsOrderUtility.downloadConfirmedOrder(request, response);
+			downloadAdminInfoUtility.downloadConfirmedOrder(request, response);
 
 			request.getRequestDispatcher(CONFIRMED_ORDER_PAGE).forward(request, response);
 

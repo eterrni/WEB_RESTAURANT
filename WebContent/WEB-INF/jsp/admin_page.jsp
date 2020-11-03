@@ -23,6 +23,12 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.admin_page.unconfirmed_orders" var="unconfirmed_orders" />
+	<fmt:message bundle="${loc}" key="local.admin_page.confirmed_orders" var="confirmed_orders" />
+	<fmt:message bundle="${loc}" key="local.admin_page.clients" var="clients" />
+	<fmt:message bundle="${loc}" key="local.admin_page.employees" var="employees" />
+	<fmt:message bundle="${loc}" key="local.admin_page.payments" var="payments" />
+	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.about_us" var="about_us" />
@@ -79,15 +85,17 @@
     </header>
 <!-- END HEADER -->
 
-<div class="main2">
-
-	<a href="Controller?command=go_to_unconfirmed_order_page">Unсonfirmed orders</a><br>
-	<a href="Controller?command=go_to_confirmed_order_page">Confirmed orders</a><br>
-	<a href="Controller?command=go_to_clients_page">Clients</a><br>
-	<a href="Controller?command=go_to_employees_page">Employees</a><br>
-	<a href="Controller?command=go_to_payments_page">Payments</a><br>
-	
-</div>
+<main>
+        <div class="link-info-wrapper">
+            <div class="link-info-box">
+                <a href="Controller?command=go_to_unconfirmed_order_page">${unconfirmed_orders}</a><br>
+				<a href="Controller?command=go_to_confirmed_order_page">${confirmed_orders}</a><br>
+				<a href="Controller?command=go_to_clients_page">${clients}</a><br>
+				<a href="Controller?command=go_to_employees_page">${employees}</a><br>
+				<a href="Controller?command=go_to_payments_page">${payments}</a><br>
+            </div>
+        </div>
+</main>
 
 <!-- START FOOTER-->
     <footer>

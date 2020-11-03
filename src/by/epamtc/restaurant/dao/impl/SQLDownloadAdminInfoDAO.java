@@ -12,6 +12,8 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamtc.restaurant.bean.order.Order;
 import by.epamtc.restaurant.bean.order.OrderStatus;
+import by.epamtc.restaurant.bean.payment.Payment;
+import by.epamtc.restaurant.bean.payment.PaymentStatus;
 import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.dao.DownloadAdminInfoDAO;
 import by.epamtc.restaurant.dao.exception.DAOException;
@@ -24,7 +26,8 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 	private static final String SELECT_CONFIRMED_CLIENTS_ORDER = "SELECT * FROM rest_db.order where status='CONFIRMED';";
 	private static final String SELECT_USERS_LIST = "SELECT * FROM rest_db.users WHERE users_role_id_role = 2;";
 	private static final String SELECT_EMPLOYEES_LIST = "SELECT * FROM rest_db.users WHERE users_role_id_role = 1;";
-	
+	private static final String SELECT_PAYMENTS_LIST = "SELECT * FROM rest_db.payment;";
+
 	private static final String MESSAGE_SQL_EXCEPTION = "SQLDownloadAdminInfoDAO - SQLException";
 	private static final String MESSAGE_CONNECTION_POOL_EXCEPTION = "SQLDownloadAdminInfoDAO - SQLException";
 
@@ -126,7 +129,7 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 
 			while (rs.next()) {
 				User user = new User();
-				
+
 				user.setId(Integer.parseInt(rs.getString(1)));
 				user.setName(rs.getString(2));
 				user.setSurname(rs.getString(3));
@@ -134,7 +137,7 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 				user.setPhoneNumber(rs.getString(7));
 				user.setAge(Integer.parseInt(rs.getString(8)));
 				user.setEmail(rs.getString(9));
-				
+
 				userList.add(user);
 			}
 
@@ -155,7 +158,7 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 
 		return userList;
 	}
-	
+
 	@Override
 	public List<User> downloadEmployeeList() throws DAOException {
 		List<User> employeeList = new ArrayList<>();
@@ -171,7 +174,7 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 
 			while (rs.next()) {
 				User user = new User();
-				
+
 				user.setId(Integer.parseInt(rs.getString(1)));
 				user.setName(rs.getString(2));
 				user.setSurname(rs.getString(3));
@@ -179,7 +182,7 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 				user.setPhoneNumber(rs.getString(7));
 				user.setAge(Integer.parseInt(rs.getString(8)));
 				user.setEmail(rs.getString(9));
-				
+
 				employeeList.add(user);
 			}
 
@@ -199,6 +202,48 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 		}
 
 		return employeeList;
+	}
+
+	@Override
+	public List<Payment> downloadPaymentList() throws DAOException {
+		List<Payment> paymentList = new ArrayList<>();
+		Connection cn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			cn = connectionPool.takeConnection();
+			ps = cn.prepareStatement(SELECT_PAYMENTS_LIST);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Payment payment = new Payment();
+
+				payment.setId(rs.getInt(1));
+				payment.setStatus(PaymentStatus.valueOf(rs.getString(2)));
+				payment.setAmount(rs.getDouble(3));
+				payment.setOrderId(rs.getInt(4));
+
+				paymentList.add(payment);
+			}
+
+		} catch (SQLException e) {
+			logger.error(MESSAGE_SQL_EXCEPTION);
+			throw new DAOException(MESSAGE_SQL_EXCEPTION, e);
+		} catch (ConnectionPoolException e) {
+			logger.error(MESSAGE_CONNECTION_POOL_EXCEPTION);
+			throw new DAOException(MESSAGE_CONNECTION_POOL_EXCEPTION, e);
+		} finally {
+			try {
+				connectionPool.closeConnection(cn, ps, rs);
+			} catch (ConnectionPoolException e) {
+				logger.error(MESSAGE_CONNECTION_POOL_EXCEPTION);
+				throw new DAOException(MESSAGE_CONNECTION_POOL_EXCEPTION, e);
+			}
+		}
+
+		return paymentList;
 	}
 
 }

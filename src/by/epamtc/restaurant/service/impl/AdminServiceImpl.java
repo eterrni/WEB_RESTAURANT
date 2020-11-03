@@ -21,6 +21,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void generatePayment(Integer orderId) throws ServiceException {
+		try {
+			adminDAO.generatePayment(orderId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
 	public void appointUserAnAdministrator(Integer userId) throws ServiceException {
 		try {
 			adminDAO.appointUserAnAdministrator(userId);

@@ -8,15 +8,18 @@ import by.epamtc.restaurant.bean.goods.Goods;
 import by.epamtc.restaurant.bean.goods.desert.Desert;
 import by.epamtc.restaurant.bean.goods.dish.Dish;
 import by.epamtc.restaurant.bean.goods.drink.Drink;
+import by.epamtc.restaurant.dao.DAOFactory;
+import by.epamtc.restaurant.dao.UserFeaturesDAO;
 import by.epamtc.restaurant.dao.exception.DAOException;
-import by.epamtc.restaurant.dao.impl.SQLPlaceOrderDAO;
-import by.epamtc.restaurant.service.PlaceOrderService;
+import by.epamtc.restaurant.service.UserFeaturesService;
 import by.epamtc.restaurant.service.exception.ServiceException;
 
-public class PlaceOrderImpl implements PlaceOrderService {
+public class UserFeaturesServiceImpl implements UserFeaturesService {
 
-	public static final SQLPlaceOrderDAO sqlPlaceOrderDAO = new SQLPlaceOrderDAO();
+	private static final DAOFactory factory = DAOFactory.getInstance();
+	private static final UserFeaturesDAO userFeaturesDAO = factory.getUserFeaturesDAO();
 
+	@Override
 	public void placeOrder(Integer userId, List<Goods> orderList) throws ServiceException {
 
 		Map<String, Integer> dishMap = new HashMap<>();
@@ -26,19 +29,42 @@ public class PlaceOrderImpl implements PlaceOrderService {
 		divisionOrder(orderList, dishMap, drinkMap, desertMap);
 
 		try {
-			Integer orderId = sqlPlaceOrderDAO.placeOrder(userId);
+			Integer orderId = userFeaturesDAO.placeOrder(userId);
 			if (dishMap.size() != 0) {
-				sqlPlaceOrderDAO.enterDishFromOrder(orderList, orderId, dishMap);
+				userFeaturesDAO.enterDishFromOrder(orderList, orderId, dishMap);
 			}
 			if (drinkMap.size() != 0) {
-				sqlPlaceOrderDAO.enterDrinkFromOrder(orderList, orderId, drinkMap);
+				userFeaturesDAO.enterDrinkFromOrder(orderList, orderId, drinkMap);
 			}
 			if (desertMap.size() != 0) {
-				sqlPlaceOrderDAO.enterDesertFromOrder(orderList, orderId, desertMap);
+				userFeaturesDAO.enterDesertFromOrder(orderList, orderId, desertMap);
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
+
+	}
+
+	@Override
+	public void payOrder(Integer paymentId) throws ServiceException {
+		try {
+			userFeaturesDAO.payOrder(paymentId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public List<Goods> getOrderDetailList(Integer orderId) throws ServiceException {
+		List<Goods> orderDetailList = null;
+
+		try {
+			orderDetailList = userFeaturesDAO.getOrderDetailList(orderId);
+
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return orderDetailList;
 	}
 
 	private void divisionOrder(List<Goods> orderList, Map<String, Integer> dishMap, Map<String, Integer> drinkMap,
@@ -86,4 +112,5 @@ public class PlaceOrderImpl implements PlaceOrderService {
 
 		}
 	}
+
 }

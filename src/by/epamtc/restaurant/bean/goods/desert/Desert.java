@@ -4,9 +4,14 @@ import java.io.Serializable;
 
 import by.epamtc.restaurant.bean.goods.Goods;
 
-public class Desert extends Goods implements Serializable{
+public class Desert extends Goods implements Serializable {
 
 	private static final long serialVersionUID = -5776802487465352315L;
 
-	
+	@Override
+	public String toString() {
+		return "Desert [Id=" + getId() + ", name=" + getName() + ", price=" + getPrice() + ", description()="
+				+ getDescription() + "]";
+	}
+
 }

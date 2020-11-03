@@ -5,15 +5,18 @@ import java.util.Map;
 
 import by.epamtc.restaurant.controller.command.impl.LoginCommand;
 import by.epamtc.restaurant.controller.command.impl.LogoutCommand;
+import by.epamtc.restaurant.controller.command.impl.PayOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.PlaceOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.PrintOrderDetailCommand;
 import by.epamtc.restaurant.controller.command.impl.RegistrationCommand;
 import by.epamtc.restaurant.controller.command.impl.UpdateUserDataCommand;
-import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDesertToOrderCommand;
-import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDishToOrderCommand;
-import by.epamtc.restaurant.controller.command.impl.add_to_order.AddDrinkToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_remove_goods_order.AddDesertToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_remove_goods_order.AddDishToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_remove_goods_order.AddDrinkToOrderCommand;
+import by.epamtc.restaurant.controller.command.impl.add_remove_goods_order.RemoveGoodsFromOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.admin.AppointAdministratorAnUserCommand;
 import by.epamtc.restaurant.controller.command.impl.admin.AppointUserAnAdministratorCommand;
-import by.epamtc.restaurant.controller.command.impl.admin.ChangeOrderStatusCommand;
+import by.epamtc.restaurant.controller.command.impl.admin.ConfrimOrderCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToAboutUsPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToAdminPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToClientsPageCommand;
@@ -24,6 +27,7 @@ import by.epamtc.restaurant.controller.command.impl.go_to.GoToErrorPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToGratitudePageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToLoginPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToMenuPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToOrderDetailPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToOrderPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToPaymentsPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToPersonalAccountPageCommand;
@@ -32,6 +36,7 @@ import by.epamtc.restaurant.controller.command.impl.go_to.GoToStockPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToUnconfirmedOrderPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToUpdateUserDataPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToUserOrderPageCommand;
+import by.epamtc.restaurant.controller.command.impl.go_to.GoToUserPaymentPageCommand;
 import by.epamtc.restaurant.controller.command.impl.go_to.GoToWelcomePageCommand;
 
 public class CommandProvider {
@@ -44,6 +49,7 @@ public class CommandProvider {
 		commands.put(ParameterName.REGISTRATION, new RegistrationCommand());
 		commands.put(ParameterName.LOGOUT, new LogoutCommand());
 		commands.put(ParameterName.UPDATE_USER_DATA, new UpdateUserDataCommand());
+		commands.put(ParameterName.PAY_ORDER, new PayOrderCommand());
 		
 		
 		commands.put(ParameterName.GO_TO_WELCOME_PAGE, new GoToWelcomePageCommand());
@@ -59,6 +65,8 @@ public class CommandProvider {
 		commands.put(ParameterName.GO_TO_ORDER_PAGE, new GoToOrderPageCommand());
 		commands.put(ParameterName.GO_TO_GRATITUDE_PAGE, new GoToGratitudePageCommand());
 		commands.put(ParameterName.GO_TO_USER_ORDER_PAGE, new GoToUserOrderPageCommand());
+		commands.put(ParameterName.GO_TO_USER_PAYMENT_PAGE, new GoToUserPaymentPageCommand());
+		commands.put(ParameterName.GO_TO_ORDER_DETAIL_PAGE, new GoToOrderDetailPageCommand());
 		
 		commands.put(ParameterName.GO_TO_ADMIN_PAGE, new GoToAdminPageCommand());
 		commands.put(ParameterName.GO_TO_UNCONFIRMED_ORDER_PAGE, new GoToUnconfirmedOrderPageCommand());
@@ -71,9 +79,11 @@ public class CommandProvider {
 		commands.put(ParameterName.ADD_DISH_TO_ORDER, new AddDishToOrderCommand());
 		commands.put(ParameterName.ADD_DRINK_TO_ORDER, new AddDrinkToOrderCommand());
 		commands.put(ParameterName.ADD_DESERT_TO_ORDER, new AddDesertToOrderCommand());
+		commands.put(ParameterName.REMOVE_GOODS_FROM_ORDER, new RemoveGoodsFromOrderCommand());
 		commands.put(ParameterName.PLACE_ORDER, new PlaceOrderCommand());
+		commands.put(ParameterName.PRINT_ORDER_DETAIL, new PrintOrderDetailCommand());
 		
-		commands.put(ParameterName.CHANGE_ORDER_STATUS, new ChangeOrderStatusCommand());
+		commands.put(ParameterName.CONFIRM_ORDER, new ConfrimOrderCommand());
 		commands.put(ParameterName.APPOINT_AN_ADMINISTRATOR, new AppointUserAnAdministratorCommand());
 		commands.put(ParameterName.APPOINT_AN_USER, new AppointAdministratorAnUserCommand());
 	}

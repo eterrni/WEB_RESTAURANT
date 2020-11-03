@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epamtc.restaurant.bean.order.Order;
+import by.epamtc.restaurant.bean.payment.Payment;
 import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.service.DownloadAdminInfoService;
 import by.epamtc.restaurant.service.ServiceFactory;
@@ -19,7 +20,8 @@ public class DownloadAdminInfoUtility {
 	private static final String ATTRIBUTE_CONFIRMED_CLIENTS_ORDER_LIST = "confirmed_clients_order_list";
 	private static final String ATTRIBUTE_CLIENTS_LIST = "clients_list";
 	private static final String ATTRIBUTE_EMPLOYEES_LIST = "employees_list";
-	
+	private static final String ATTRIBUTE_PAYMENTS_LIST = "payments_list";
+
 	private static final String ATTRIBUTE_ERROR = "error";
 
 	private static final String ERROR_PAGE = "Controller?command=go_to_error_page";
@@ -97,6 +99,23 @@ public class DownloadAdminInfoUtility {
 			}
 
 			session.setAttribute(ATTRIBUTE_EMPLOYEES_LIST, employeeList);
+		} catch (ServiceException e) {
+			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
+			response.sendRedirect(ERROR_PAGE);
+		}
+	}
+
+	public void downloadPaymentList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+
+		try {
+			List<Payment> paymentList = downloadAdminInfoService.downloadPaymentList();
+
+			if (session.getAttribute(ATTRIBUTE_PAYMENTS_LIST) != null) {
+				session.removeAttribute(ATTRIBUTE_PAYMENTS_LIST);
+			}
+
+			session.setAttribute(ATTRIBUTE_PAYMENTS_LIST, paymentList);
 		} catch (ServiceException e) {
 			request.getSession().setAttribute(ATTRIBUTE_ERROR, e);
 			response.sendRedirect(ERROR_PAGE);

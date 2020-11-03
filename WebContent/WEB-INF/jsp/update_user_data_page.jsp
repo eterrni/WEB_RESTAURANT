@@ -110,17 +110,17 @@
 		<input type="hidden" name="id" value="${sessionScope.user.id}" />
 		
 		${update_name}
-        <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,15}" value="${sessionScope.user.name}"/><br>
+        <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,15}" value="${sessionScope.user.name}" required/><br>
         ${update_surname}
-        <input type="text" name="surname" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" value="${sessionScope.user.surname}"/><br>
+        <input type="text" name="surname" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" value="${sessionScope.user.surname}" required/><br>
         ${update_patronymic}
-        <input type="text" name="patronymic" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" value="${sessionScope.user.patronymic}"/><br>
+        <input type="text" name="patronymic" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" value="${sessionScope.user.patronymic}" required/><br>
         ${update_phoneNumber}
-		<input type="tel" name="phoneNumber" pattern="^[0-9\\(\\)-+\\s]+$" value="${sessionScope.user.phoneNumber}"/><br>
+		<input type="tel" name="phoneNumber" pattern="^[0-9\\(\\)-+\\s]+$" value="${sessionScope.user.phoneNumber}" required/><br>
 		${update_age}
-        <input type="number" min="6" max="100" name="age" pattern="\d+" value="${sessionScope.user.age}" /><br>
+        <input type="number" min="6" max="100" name="age" pattern="\d+" value="${sessionScope.user.age}" required/><br>
         ${update_email}
-        <input type="email" name="email" pattern="^[\w.-_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$" value="${sessionScope.user.email}" /><br>
+        <input type="email" name="email" pattern="^[\w.-_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$" value="${sessionScope.user.email}" required/><br>
         
         <input type="submit" value="${button}" />
         </form>

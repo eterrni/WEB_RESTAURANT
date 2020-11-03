@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Payment page</title>
     <style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
 
@@ -45,13 +45,13 @@
                 
                 <form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_welcome_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_user_payment_page" />
  				<button type="submit" >${ru_button}</button>
  				</form>
  				
  				<form action="ServletForChangeLanguage" method="post">
  				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_welcome_page" />
+ 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_user_payment_page" />
  				<button type="submit" >${en_button}</button>
  				</form>
                 </div>
@@ -61,7 +61,6 @@
  				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
  				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
  				</c:if>
- 					<li><a href="Controller?command=go_to_user_payment_page">Мои платежи</a></li>
  				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
@@ -95,9 +94,42 @@
         </div>
     </header>
 <!-- END HEADER -->
-    <div class="main2">
-	<p>WELCOME PAGE</p>
-    </div>
+    <main>
+    	<table width="100%">
+    		<caption>My payments page</caption>
+    			<tr>
+    				<th>Id payment</th>
+    				<th>Status</th>
+    				<th>Amount</th>
+    				<th>Order id</th>
+    			</tr>
+    			
+    			<c:forEach var="payment" items="${sessionScope.user_payment_list}">
+    			<tr>
+    				<th>${payment.id}</th>
+    				
+    				<c:if test="${payment.status eq 'UNPAID'}" >
+    					<th><p style="color:red">${payment.status}</p></th>
+    				</c:if>
+    				<c:if test="${payment.status eq 'PAID'}" >
+    					<th><p style="color:green">${payment.status}</p></th>
+    				</c:if>
+    				
+    				<th>${payment.amount}</th>
+    				<th>${payment.orderId}</th>
+    				<c:if test="${payment.status eq 'UNPAID'}">
+    				<th>
+    					<form action="Controller" method="post">
+    					<input type="hidden" name="command" value="pay_order"/>
+    					<input type="hidden" name="paymentId" value="${payment.id}"/>
+    					<input type="submit" value="To pay" />
+    					</form>
+    				</th>
+    				</c:if>
+    			</tr>
+    			</c:forEach>
+    	</table>
+    </main>
 <!-- START FOOTER-->
     <footer>
         <div class="footer-box">

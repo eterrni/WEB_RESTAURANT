@@ -98,18 +98,34 @@
     </header>
 <!-- END HEADER -->
 <div class="main2">
-		<h4>${my_data}</h4>
-		<p>${name}: ${sessionScope.user.name}</p>
-		<p>${surname}: ${sessionScope.user.surname}</p>
-		<p>${patronymic}: ${sessionScope.user.patronymic}</p>
-		<p>${phoneNumber}: ${sessionScope.user.phoneNumber}</p>
-		<p>${age}: ${sessionScope.user.age}</p>
-		<p>${email}: ${sessionScope.user.email}</p>
-		<p>${status}: ${sessionScope.user.role}</p>
-		<p>${id}: ${sessionScope.user.id}</p>
-		
-		<a href="Controller?command=go_to_update_user_data_page">${button}</a><br>
-		
+<table whidth="100%">
+<caption>${my_data}</caption>
+	<tr align="center" valign="middle">
+		<th>${name}</th>
+		<th>${surname}</th>
+		<th>${patronymic}</th>
+		<th>${phoneNumber}</th>
+		<th>${age}</th>
+		<th>${email}</th>
+		<th>${id}</th>
+	</tr>
+	
+	<tr align="center" valign="middle">
+		<th>${sessionScope.user.name}</th>
+		<th>${sessionScope.user.surname}</th>
+		<th>${sessionScope.user.patronymic}</th>
+		<th>${sessionScope.user.phoneNumber}</th>
+		<th>${sessionScope.user.age}</th>
+		<th>${sessionScope.user.email}</th>
+		<th>${sessionScope.user.id}</th>
+	</tr>
+	<tr align="center" valign="middle">
+		<th><form action="Controller" method="post">
+		<input type="hidden" name="command" value="go_to_update_user_data_page" />
+		<input type="submit" value="${button}" />
+		</form></th>
+	</tr>
+
 		<c:if test="${sessionScope.update_message eq 'successful_update_data'}">
           <p style="color:green">${successful_update}</p>
         </c:if>
@@ -117,6 +133,7 @@
         <c:if test="${sessionScope.update_message eq 'unsuccessful_update_data'}">
           <p style="color:red">${unsuccessful_update}</p>
         </c:if>
+</table>
 </div>
 <!-- START FOOTER-->
     <footer>

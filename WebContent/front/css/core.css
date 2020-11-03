@@ -89,6 +89,7 @@
 }
 
 main {
+	min-height: 500px;
 	height: 100%;
 	width: 100%;
 	background-color: burlywood;
@@ -96,6 +97,7 @@ main {
 }
 
 .main2 {
+	min-height: 500px;
 	height: 100vh;
 	width: 100%;
 	background-color: burlywood;
@@ -286,4 +288,96 @@ form {
 .box-button {
     margin-top: 20px;
     margin-bottom: -40px;
+}
+.order-list {
+    width: 960px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.order-list-title {
+    text-align: center;
+    padding-top: 20px;
+}
+.order-list-title p {
+    font-size: 27px;
+    color: cornsilk;
+}
+.box-wrap {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    height: 40px;
+}
+.name-box {
+    width: 50%;
+}
+.name-box p {
+    font-size: 20px;
+}
+.price-box {
+    width: 50%;
+}
+.price-box p {
+    font-size: 20px;
+}
+.order-list-box {
+    margin-top: 10px;
+    display: flex;
+}
+.name-food {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.price-food {
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+.delete-button .button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.arrange-order {
+    text-align: center;
+    margin-top: 20px;
+}
+.arrange-order-button {
+    background-color: chocolate;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+}
+.link-info-wrapper {
+    width: 960px;
+    margin: 0 auto;
+    min-height: 500px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link-info-box {
+    display: flex;
+    flex-direction: column;
+}
+.link-info-box a {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px 0;
+    text-align:center; 
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+}
+.link-info-box a:hover {
+    background-color: white;
+    color: black;
+    transition: 2s;
 }

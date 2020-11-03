@@ -10,15 +10,18 @@ public class Goods implements Serializable {
 	private String name;
 	private Double price;
 	private String description;
+	private Integer count;
 	
 	public Goods() {
 	}
-	
-	public Goods(Integer id, String name, Double price, String description) {
+
+	public Goods(Integer id, String name, Double price, String description, Integer count) {
+		super();
 		this.id = id;
-		this.name= name;
+		this.name = name;
 		this.price = price;
 		this.description = description;
+		this.count = count;
 	}
 
 	public Integer getId() {
@@ -53,6 +56,14 @@ public class Goods implements Serializable {
 		this.description = description;
 	}
 
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -61,6 +72,7 @@ public class Goods implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((count == null) ? 0 : count.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -77,6 +89,11 @@ public class Goods implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Goods other = (Goods) obj;
+		if (count == null) {
+			if (other.count != null)
+				return false;
+		} else if (!count.equals(other.count))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -102,8 +119,11 @@ public class Goods implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Goods [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + "]";
+		return "Goods [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", count="
+				+ count + "]";
 	}
+	
+	
 	
 	
 	

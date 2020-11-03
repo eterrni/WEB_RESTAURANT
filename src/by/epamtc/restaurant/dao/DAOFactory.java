@@ -5,6 +5,7 @@ import by.epamtc.restaurant.dao.impl.SQLDownloadAdminInfoDAO;
 import by.epamtc.restaurant.dao.impl.SQLDownloadMenuDAO;
 import by.epamtc.restaurant.dao.impl.SQLDownloadUserOrderDAO;
 import by.epamtc.restaurant.dao.impl.SQLUserDAO;
+import by.epamtc.restaurant.dao.impl.SQLUserFeaturesDAO;
 
 public class DAOFactory {
 
@@ -12,7 +13,8 @@ public class DAOFactory {
 
 	private static final UserDAO sqlUserDAO = new SQLUserDAO();
 	private static final AdminDAO sqlAdminDAO = new SQLAdminDAO();
-	
+	private static final UserFeaturesDAO sqlUserFeaturesDAO = new SQLUserFeaturesDAO();
+
 	private static final DownloadMenuDAO downloadMenuDAO = new SQLDownloadMenuDAO();
 	private static final DownloadUserOrderDAO downloadUserOrderDAO = new SQLDownloadUserOrderDAO();
 	private static final DownloadAdminInfoDAO downloadAdminInfoDAO = new SQLDownloadAdminInfoDAO();
@@ -24,9 +26,13 @@ public class DAOFactory {
 	public UserDAO getUserDAO() {
 		return sqlUserDAO;
 	}
-	
+
 	public AdminDAO getAdminDAO() {
 		return sqlAdminDAO;
+	}
+
+	public UserFeaturesDAO getUserFeaturesDAO() {
+		return sqlUserFeaturesDAO;
 	}
 
 	public DownloadMenuDAO getDownloadMenuDAO() {

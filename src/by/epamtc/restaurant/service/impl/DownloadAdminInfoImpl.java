@@ -3,6 +3,7 @@ package by.epamtc.restaurant.service.impl;
 import java.util.List;
 
 import by.epamtc.restaurant.bean.order.Order;
+import by.epamtc.restaurant.bean.payment.Payment;
 import by.epamtc.restaurant.bean.user.User;
 import by.epamtc.restaurant.dao.DAOFactory;
 import by.epamtc.restaurant.dao.DownloadAdminInfoDAO;
@@ -54,5 +55,16 @@ public class DownloadAdminInfoImpl implements DownloadAdminInfoService {
 			throw new ServiceException(e);
 		}
 		return employeeList;
+	}
+
+	@Override
+	public List<Payment> downloadPaymentList() throws ServiceException {
+		List<Payment> paymentList = null;
+		try {
+			paymentList = downloadAdminInfoDAO.downloadPaymentList();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return paymentList;
 	}
 }

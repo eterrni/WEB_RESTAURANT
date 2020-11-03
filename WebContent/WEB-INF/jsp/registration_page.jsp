@@ -93,14 +93,14 @@
             <form action="Controller" method="GET">
                 <div class="registr-form">
 					<input type="hidden" name="command" value="registration" />
-                    <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${name}"/>
-                    <input type="text" name="surname" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${surname}"/>
-                    <input type="text" name="patronymic" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${patronymic}"/>
-                    <input type="text" name="login" pattern="[a-zA-Z][a-zA-Z0-9]{2,14}" placeholder="${login}">
-                    <input type="password" name="password" pattern="((?=.*\d)(?=.*[a-zA-Z]).{5,15})" placeholder="${password}"/>
-		  		    <input type="tel" name="phoneNumber" pattern="^[0-9\\(\\)-+\\s]+$" placeholder="${phone_number}"/><br>
-                    <input type="number" min="6" max="100" name="age" pattern="\d+" placeholder="${age}" /><br>
-                    <input type="text" name="email" pattern="^[\w.-_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$" placeholder="${email}"/>
+                    <input type="text" name="name" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${name}" required/>
+                    <input type="text" name="surname" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${surname}" required/>
+                    <input type="text" name="patronymic" pattern="[a-zA-Zа-яА-ЯЁё]{3,20}" placeholder="${patronymic}" required/>
+                    <input type="text" name="login" pattern="[a-zA-Z][a-zA-Z0-9]{2,14}" placeholder="${login}" required />
+                    <input type="password" name="password" pattern="((?=.*\d)(?=.*[a-zA-Z]).{5,15})" placeholder="${password}" required/>
+		  		    <input type="tel" name="phoneNumber" pattern="^[0-9\\(\\)-+\\s]+$" placeholder="${phone_number}" required/><br>
+                    <input type="number" min="6" max="100" name="age" pattern="\d+" placeholder="${age}" required/><br>
+                    <input type="text" name="email" pattern="^[\w.-_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$" placeholder="${email}" required/>
                 </div>
                 <div class="button">
                     <input type="submit" value="${button}" />

@@ -93,20 +93,35 @@
 <!-- END HEADER -->
 <div class="main2">
 
-<c:forEach var="client" items="${sessionScope.clients_list}" >
-		  <p>${client_id} <c:out value="${client.id}" /></p>
-	      <p>${client_name} <c:out value="${client.name}" /></p>
-	      <p>${client_surname} <c:out value="${client.surname}" /></p>
-	      <p>${client_patronymic} <c:out value="${client.patronymic}" /></p>
-	      <p>${client_phoneNumber} <c:out value="${client.phoneNumber}" /></p>
-	      <p>${client_age} <c:out value="${client.age}" /></p>
-	      <p>${client_email} <c:out value="${client.email}" /></p>
-	      <br><form action="Controller" method="post">
-	      <input type="hidden" name="command" value="appoint_an_administrator">
-	      <input type="hidden" name="user_id" value="${client.id}" />
-	      <input type="submit" value="${button}"/>
-	      </form>
-</c:forEach>
+<table width="100%">
+	<tr>
+		<th>${client_id}</th>
+		<th>${client_name}</th>
+		<th>${client_surname}</th>
+		<th>${client_patronymic}</th>
+		<th>${client_phoneNumber}</th>
+		<th>${client_age}</th>
+		<th>${client_email}</th>
+	</tr>
+	
+	<c:forEach var="client" items="${sessionScope.clients_list}" >
+		<tr>
+			<th>${client.id}</th>
+			<th>${client.name}</th>
+			<th>${client.surname}</th>
+			<th>${client.patronymic}</th>
+			<th>${client.phoneNumber}</th>
+			<th>${client.age}</th>
+			<th>${client.email}</th>
+			<th> <form action="Controller" method="post">
+	      		 <input type="hidden" name="command" value="appoint_an_administrator">
+	     		 <input type="hidden" name="user_id" value="${client.id}" />
+	     		 <input type="submit" value="${button}"/>
+	    	     </form>
+			</th>
+		</tr>
+	</c:forEach>
+</table>
 </div>
 		<!-- START FOOTER-->
     <footer>

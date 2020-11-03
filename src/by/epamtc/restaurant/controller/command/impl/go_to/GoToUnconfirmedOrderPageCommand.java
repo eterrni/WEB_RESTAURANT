@@ -13,8 +13,7 @@ import by.epamtc.restaurant.controller.command.impl.utility.DownloadAdminInfoUti
 
 public class GoToUnconfirmedOrderPageCommand implements Command {
 
-	private static final DownloadAdminInfoUtility downloadAdminInfoUtility = DownloadAdminInfoUtility
-			.getInstance();
+	private static final DownloadAdminInfoUtility downloadAdminInfoUtility = DownloadAdminInfoUtility.getInstance();
 	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
 	private static final String UNCONFIRMED_ORDER_PAGE = "WEB-INF/jsp/admin/unconfirmed_order_page.jsp";
 
