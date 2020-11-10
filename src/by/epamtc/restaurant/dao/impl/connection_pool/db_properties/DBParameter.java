@@ -2,8 +2,9 @@ package by.epamtc.restaurant.dao.impl.connection_pool.db_properties;
 
 public final class DBParameter {
 
-	private DBParameter() {}
-	
+	private DBParameter() {
+	}
+
 	public static final String DB_DRIVER = "db.driver";
 	public static final String DB_URL = "db.url";
 	public static final String DB_USER = "db.user";

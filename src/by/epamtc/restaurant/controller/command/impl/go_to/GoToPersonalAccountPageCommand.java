@@ -15,13 +15,14 @@ public class GoToPersonalAccountPageCommand implements Command {
 
 	private static final String ATTRIBUTE_USER = "user";
 	private static final String PARAMETER_UPDATE_MESSAGE = "update_message";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute(ATTRIBUTE_USER) == null) {
 			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 		} else {
-			response.setContentType("text/html");
+			response.setContentType(CONTENT_TYPE);
 
 			request.getRequestDispatcher(PERSONAL_ACCOUNT_PAGE).forward(request, response);
 			request.getSession().removeAttribute(PARAMETER_UPDATE_MESSAGE);

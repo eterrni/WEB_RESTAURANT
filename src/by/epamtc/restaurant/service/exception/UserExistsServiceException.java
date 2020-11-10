@@ -7,11 +7,11 @@ public class UserExistsServiceException extends Exception {
 	public UserExistsServiceException() {
 		super();
 	}
-	
+
 	public UserExistsServiceException(String message) {
 		super(message);
 	}
-	
+
 	public UserExistsServiceException(Exception e) {
 		super(e);
 	}
@@ -19,5 +19,5 @@ public class UserExistsServiceException extends Exception {
 	public UserExistsServiceException(String message, Exception e) {
 		super(message, e);
 	}
-	
+
 }

@@ -9,6 +9,6 @@ import by.epamtc.restaurant.service.exception.ServiceException;
 public interface DownloadUserOrderService {
 
 	List<Order> downloadUserOrderList(Integer userId) throws ServiceException;
-	
+
 	List<Payment> downloadUserPaymentList(Integer userId) throws ServiceException;
 }

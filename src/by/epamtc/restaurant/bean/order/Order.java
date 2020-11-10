@@ -38,7 +38,6 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-
 	public OrderStatus getStatus() {
 		return status;
 	}
@@ -114,7 +113,5 @@ public class Order implements Serializable {
 		return "Order [id=" + id + ", status=" + status + ", createDate=" + createDate + ", userId=" + userId
 				+ ", orderList=" + orderList + "]";
 	}
-
-	
 
 }

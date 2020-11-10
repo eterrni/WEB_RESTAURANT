@@ -20,8 +20,6 @@ import by.epamtc.restaurant.dao.impl.connection_pool.exception.ConnectionPoolExc
 
 public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 
-	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-
 	private static final String ADD_ORDER = "INSERT INTO `rest_db`.`order` (`status`, `users_id_users`) VALUES (?, ?);";
 	private static final String GET_ORDER_ID = "SELECT id_order FROM rest_db.order where status ='NOT_CONFIRMED' AND users_id_users = ?;";
 
@@ -46,6 +44,7 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 
 	private static final String PAY_ORDER = "UPDATE `rest_db`.`payment` SET `status` = 'PAID' WHERE (`id_payment` = ?);";
 
+	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLUserFeaturesDAO.class);
 
 	@Override

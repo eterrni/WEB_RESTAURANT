@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class UserUpdateData implements Serializable {
 
 	private static final long serialVersionUID = -4522524188219835397L;
-	
+
 	private String name;
 	private String surname;
 	private String patronymic;
@@ -13,7 +13,7 @@ public class UserUpdateData implements Serializable {
 	private Integer age;
 	private String email;
 	private Integer id;
-	
+
 	public UserUpdateData(String name, String surname, String patronymic, String phoneNumber, Integer age, String email,
 			Integer id) {
 		super();
@@ -156,9 +156,5 @@ public class UserUpdateData implements Serializable {
 		return "UserUpdateData [name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", phoneNumber="
 				+ phoneNumber + ", age=" + age + ", email=" + email + ", id=" + id + "]";
 	}
-	
-	
-	
-	
-	
+
 }

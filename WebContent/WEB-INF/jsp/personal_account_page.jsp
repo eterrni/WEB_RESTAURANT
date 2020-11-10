@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    <%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,7 @@
 	
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_payment_page" var="user_payment_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
@@ -67,11 +69,12 @@
  				<button type="submit" >${en_button}</button>
  				</form>
                 </div>
- 				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<li style="margin-right: 20px;">${hello}, ${sessionScope.user.name}</li>
  				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
  				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
  				</c:if>
+ 				<li><a href="Controller?command=go_to_user_payment_page">${user_payment_page}</a></li>
  				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
@@ -97,44 +100,75 @@
         </div>
     </header>
 <!-- END HEADER -->
-<div class="main2">
-<table whidth="100%">
-<caption>${my_data}</caption>
-	<tr align="center" valign="middle">
-		<th>${name}</th>
-		<th>${surname}</th>
-		<th>${patronymic}</th>
-		<th>${phoneNumber}</th>
-		<th>${age}</th>
-		<th>${email}</th>
-		<th>${id}</th>
-	</tr>
-	
-	<tr align="center" valign="middle">
-		<th>${sessionScope.user.name}</th>
-		<th>${sessionScope.user.surname}</th>
-		<th>${sessionScope.user.patronymic}</th>
-		<th>${sessionScope.user.phoneNumber}</th>
-		<th>${sessionScope.user.age}</th>
-		<th>${sessionScope.user.email}</th>
-		<th>${sessionScope.user.id}</th>
-	</tr>
-	<tr align="center" valign="middle">
-		<th><form action="Controller" method="post">
-		<input type="hidden" name="command" value="go_to_update_user_data_page" />
-		<input type="submit" value="${button}" />
-		</form></th>
-	</tr>
-
-		<c:if test="${sessionScope.update_message eq 'successful_update_data'}">
-          <p style="color:green">${successful_update}</p>
-        </c:if>
-            
-        <c:if test="${sessionScope.update_message eq 'unsuccessful_update_data'}">
-          <p style="color:red">${unsuccessful_update}</p>
-        </c:if>
-</table>
+<main>
+<div class="myData-title">
+            <p>${my_data}</p>
 </div>
+<div class="myData-wrapper">
+       <div class="myData-box">
+               <div class="box-name">
+                    <p>${name}</p>
+               </div>
+               <div class="box-content">
+                    <p>${sessionScope.user.name}</p>
+               </div>
+       </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${surname}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.surname}</p>
+                </div>
+            </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${patronymic}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.patronymic}</p>
+                </div>
+            </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${phoneNumber}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.phoneNumber}</p>
+                </div>
+            </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${age}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.age}</p>
+                </div>
+            </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${email}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.email}</p>
+                </div>
+            </div>
+            <div class="myData-box">
+                <div class="box-name">
+                    <p>${id}</p>
+                </div>
+                <div class="box-content">
+                    <p>${sessionScope.user.id}</p>
+                </div>
+            </div>
+        </div>
+        <div class="change-data">
+		<form action="Controller" method="post">
+		<input type="hidden" name="command" value="go_to_update_user_data_page" />
+		<input type="submit" class="change-data-button" value="${button}" />
+		</form>
+         </div>	
+</main>
 <!-- START FOOTER-->
     <footer>
         <div class="footer-box">
@@ -151,6 +185,7 @@
                 </div>
             </div>
         </div>
+        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
     </footer>
 <!-- END FOOTER-->
 </body>

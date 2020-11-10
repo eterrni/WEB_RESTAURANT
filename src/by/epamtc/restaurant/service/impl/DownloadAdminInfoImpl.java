@@ -46,7 +46,7 @@ public class DownloadAdminInfoImpl implements DownloadAdminInfoService {
 		}
 		return userList;
 	}
-	
+
 	public List<User> downloadEmployeeList() throws ServiceException {
 		List<User> employeeList = null;
 		try {

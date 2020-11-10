@@ -13,11 +13,12 @@ public interface UserFeaturesDAO {
 	void payOrder(Integer paymentId) throws DAOException;
 
 	List<Goods> getOrderDetailList(Integer orderId) throws DAOException;
-	
+
 	void enterDishFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> dishMap) throws DAOException;
 
 	void enterDrinkFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> drinkMap) throws DAOException;
 
-	void enterDesertFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> desertMap) throws DAOException;
+	void enterDesertFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> desertMap)
+			throws DAOException;
 
 }

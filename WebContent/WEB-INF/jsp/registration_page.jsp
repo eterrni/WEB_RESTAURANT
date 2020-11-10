@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,6 +143,7 @@
                 </div>
             </div>
         </div>
+        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
     </footer>
 <!-- END FOOTER-->
 </body>

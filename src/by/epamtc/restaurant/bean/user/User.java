@@ -18,8 +18,8 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Integer id, String name, String surname, String patronymic, String phoneNumber,
-			Integer age, String email, Role role) {
+	public User(Integer id, String name, String surname, String patronymic, String phoneNumber, Integer age,
+			String email, Role role) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -165,12 +165,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", phoneNumber=" + phoneNumber + ", age=" + age + ", email="
-				+ email + ", role=" + role + "]";
+		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", patronymic=" + patronymic
+				+ ", phoneNumber=" + phoneNumber + ", age=" + age + ", email=" + email + ", role=" + role + "]";
 	}
-
-	
-
-	
 
 }

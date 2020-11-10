@@ -49,7 +49,7 @@ public class PlaceOrderCommand implements Command {
 				List<Goods> orderList = order.getOrderList();
 
 				userFeaturesService.placeOrder(userId, orderList);
-				
+
 				page = GRATITUDE_PAGE;
 
 			} catch (ServiceException e) {

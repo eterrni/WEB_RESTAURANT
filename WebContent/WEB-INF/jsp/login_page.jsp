@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    <%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,7 @@
         </div>
     </header>
 <!-- END HEADER -->
-	<div class="main2">
+<main>
         <div class="login-wrapper">
             <div class="enter-account">
                 <form action="Controller" method="post">
@@ -94,7 +95,7 @@
             	
             </div>
         </div>
-    </div>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">
@@ -111,6 +112,7 @@
                 </div>
             </div>
         </div>
+        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
     </footer>
 <!-- END FOOTER-->
 		

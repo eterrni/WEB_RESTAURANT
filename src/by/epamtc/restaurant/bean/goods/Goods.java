@@ -3,15 +3,15 @@ package by.epamtc.restaurant.bean.goods;
 import java.io.Serializable;
 
 public class Goods implements Serializable {
-	
+
 	private static final long serialVersionUID = -4195121522601943904L;
-	
+
 	private Integer id;
 	private String name;
 	private Double price;
 	private String description;
 	private Integer count;
-	
+
 	public Goods() {
 	}
 
@@ -122,9 +122,5 @@ public class Goods implements Serializable {
 		return "Goods [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", count="
 				+ count + "]";
 	}
-	
-	
-	
-	
-	
+
 }

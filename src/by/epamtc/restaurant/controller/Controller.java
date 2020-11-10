@@ -13,6 +13,7 @@ public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final String COMMAND_NAME = "command";
+	private static final String CONTENT_TYPE = "text/html";
 	private CommandProvider provider = CommandProvider.getInstance();
 
 	public Controller() {
@@ -26,7 +27,7 @@ public class Controller extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		String currentCommand;
 		Command command;

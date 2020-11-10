@@ -10,8 +10,8 @@ import by.epamtc.restaurant.dao.exception.DAOException;
 public interface DownloadMenuDAO {
 
 	List<Dish> downloadDish() throws DAOException;
-	
+
 	List<Drink> downloadDrink() throws DAOException;
-	
+
 	List<Desert> downloadDesert() throws DAOException;
 }

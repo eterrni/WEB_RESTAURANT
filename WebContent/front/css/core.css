@@ -4,6 +4,19 @@
 	border-bottom: 2px solid cornsilk;
 }
 
+.menu-title {
+    min-height: 530px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-title p {
+    font-size: 50px;
+    color: #5e2f0d;
+}
+
 .registr-box {
 	width: 960px;
 	margin: 0 auto;
@@ -89,7 +102,7 @@
 }
 
 main {
-	min-height: 500px;
+	min-height: 530px;
 	height: 100%;
 	width: 100%;
 	background-color: burlywood;
@@ -97,8 +110,8 @@ main {
 }
 
 .main2 {
-	min-height: 500px;
-	height: 100vh;
+	min-height: 530px;
+	height: 100%;
 	width: 100%;
 	background-color: burlywood;
 	border-bottom: 2px solid cornsilk;
@@ -146,6 +159,7 @@ main {
 footer {
 	background-color: burlywood;
 	height: 70px;
+	position: relative;
 }
 
 .footer-box {
@@ -300,7 +314,7 @@ form {
 }
 .order-list-title p {
     font-size: 27px;
-    color: cornsilk;
+    color: #5e2f0d;
 }
 .box-wrap {
     display: flex;
@@ -314,12 +328,14 @@ form {
 }
 .name-box p {
     font-size: 20px;
+    color: #5e2f0d;
 }
 .price-box {
     width: 50%;
 }
 .price-box p {
     font-size: 20px;
+    color: #5e2f0d;
 }
 .order-list-box {
     margin-top: 10px;
@@ -330,11 +346,21 @@ form {
     display: flex;
     align-items: center;
 }
+
+.name-food p{
+	color: #5e2f0d;
+}
+
 .price-food {
     width: 35%;
     display: flex;
     align-items: center;
 }
+
+.price-food p{
+	color: #5e2f0d;
+}
+
 .delete-button .button {
     background-color: chocolate;
     border: none;
@@ -354,6 +380,7 @@ form {
     padding: 10px;
     color: white;
 }
+
 .link-info-wrapper {
     width: 960px;
     margin: 0 auto;
@@ -380,4 +407,51 @@ form {
     background-color: white;
     color: black;
     transition: 2s;
+}
+.copyright-text {
+	width: 101px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+}
+
+.myData-title {
+    padding-top: 20px;
+    text-align: center;
+    color: #5e2f0d;
+    font-size: 30px;
+}
+
+.myData-wrapper {
+    padding-top: 30px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-name {
+    padding-bottom: 20px;
+    text-align: center;
+    color: #5e2f0d;
+    font-size: 20px;
+}
+.box-content {
+    text-align: center;
+    color: #5e2f0d;
+    font-size: 20px;
+}
+
+.change-data {
+    text-align: center;
+    margin-top: 30px;
+}
+.change-data-button {
+    padding: 10px;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: chocolate;
+    color: white;
+    cursor: pointer;
 }

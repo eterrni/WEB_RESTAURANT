@@ -10,15 +10,18 @@ import by.epamtc.restaurant.controller.command.Command;
 
 public class GoToOrderPageCommand implements Command {
 
+	private static final String ATTRIBUTE_USER = "user";
+	private static final String CONTENT_TYPE = "text/html";
+
 	private static final String ORDER_PAGE = "WEB-INF/jsp/order_page.jsp";
 	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("user") == null) {
+		if (request.getSession().getAttribute(ATTRIBUTE_USER) == null) {
 			request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 		} else {
-			response.setContentType("text/html");
+			response.setContentType(CONTENT_TYPE);
 
 			request.getRequestDispatcher(ORDER_PAGE).forward(request, response);
 		}

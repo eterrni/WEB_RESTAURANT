@@ -9,6 +9,6 @@ import by.epamtc.restaurant.dao.exception.DAOException;
 public interface DownloadUserOrderDAO {
 
 	List<Order> downloadUserOrderList(Integer userId) throws DAOException;
-	
+
 	List<Payment> downloadUserPaymentList(Integer userId) throws DAOException;
 }

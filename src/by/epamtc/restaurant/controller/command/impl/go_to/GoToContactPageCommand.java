@@ -11,10 +11,11 @@ import by.epamtc.restaurant.controller.command.Command;
 public class GoToContactPageCommand implements Command {
 
 	private static final String CONTACT_PAGE = "WEB-INF/jsp/contact_page.jsp";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		request.getRequestDispatcher(CONTACT_PAGE).forward(request, response);
 

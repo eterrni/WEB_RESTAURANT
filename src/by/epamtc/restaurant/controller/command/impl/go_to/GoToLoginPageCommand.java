@@ -12,13 +12,14 @@ public class GoToLoginPageCommand implements Command {
 
 	private static final String LOGIN_PAGE = "WEB-INF/jsp/login_page.jsp";
 	private static final String ATTRIBUTE_AUTHORIZATION_MESSAGE = "authorization_message";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
-		
+
 		request.getSession().removeAttribute(ATTRIBUTE_AUTHORIZATION_MESSAGE);
 
 	}

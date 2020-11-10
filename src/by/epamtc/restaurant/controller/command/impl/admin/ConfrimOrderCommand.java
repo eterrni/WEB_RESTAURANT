@@ -36,10 +36,10 @@ public class ConfrimOrderCommand implements Command {
 		try {
 
 			Integer orderId = Integer.parseInt(request.getParameter(PARAMETER_ORDER_ID));
-			
+
 			adminService.changeOrderStatus(orderId);
 			adminService.generatePayment(orderId);
-			
+
 			page = UNCONFIRMED_ORDER_PAGE;
 
 		} catch (ServiceException e) {

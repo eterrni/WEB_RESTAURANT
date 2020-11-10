@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    <%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 	
 	<fmt:message bundle="${loc}" key="local.hello" var="hello" />
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_payment_page" var="user_payment_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
 	<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
@@ -40,12 +42,13 @@
  				</form>
  				
                 </div>
- 				 <c:if test="${sessionScope.user != null}">
- 				${hello}, ${sessionScope.user.name}
+ 				<c:if test="${sessionScope.user != null}">
  				<ul>
+ 				<li style="margin-right: 20px;">${hello}, ${sessionScope.user.name}</li>
  				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
  				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
  				</c:if>
+ 				<li><a href="Controller?command=go_to_user_payment_page">${user_payment_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
                    <li><a href="Controller?command=go_to_order_page">${order}</a></li>
@@ -111,6 +114,7 @@
                 </div>
             </div>
         </div>
+        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
     </footer>
 <!-- END FOOTER-->
 		

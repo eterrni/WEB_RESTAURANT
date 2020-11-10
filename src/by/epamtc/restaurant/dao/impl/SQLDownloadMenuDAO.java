@@ -20,12 +20,12 @@ import by.epamtc.restaurant.dao.impl.connection_pool.exception.ConnectionPoolExc
 
 public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 
-	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-	private static final Logger logger = LogManager.getLogger(SQLDownloadMenuDAO.class);
-
 	private static final String SELECT_DISH = "SELECT * FROM rest_db.dishes";
 	private static final String SELECT_DRINK = "SELECT * FROM rest_db.drinks;";
 	private static final String SELECT_DESERT = "SELECT * FROM rest_db.deserts;";
+
+	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
+	private static final Logger logger = LogManager.getLogger(SQLDownloadMenuDAO.class);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -12,22 +12,22 @@ import by.epamtc.restaurant.controller.command.impl.utility.DownloadMenuDataUtil
 public class GoToMenuPageCommand implements Command {
 
 	private static final String MENU_PAGE = "WEB-INF/jsp/menu_page.jsp";
-	
 	private static final String ATTRIBUTE_DRINK_LIST = "drinkList";
 	private static final String ATTRIBUTE_DISH_LIST = "dishList";
 	private static final String ATTRIBUTE_DESERT_LIST = "desertList";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		if (request.getSession().getAttribute(ATTRIBUTE_DRINK_LIST) == null
 				|| request.getSession().getAttribute(ATTRIBUTE_DISH_LIST) == null
 				|| request.getSession().getAttribute(ATTRIBUTE_DESERT_LIST) == null) {
-			
+
 			DownloadMenuDataUtility downloadMenuDataUtility = DownloadMenuDataUtility.getInstance();
 			downloadMenuDataUtility.download(request, response);
-			
+
 		}
 		request.getRequestDispatcher(MENU_PAGE).forward(request, response);
 

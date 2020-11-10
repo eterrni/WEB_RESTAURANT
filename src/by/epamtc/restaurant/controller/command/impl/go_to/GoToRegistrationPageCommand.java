@@ -12,10 +12,11 @@ public class GoToRegistrationPageCommand implements Command {
 
 	private static final String REGISTRATION_PAGE = "WEB-INF/jsp/registration_page.jsp";
 	private static final String ATTRIBUTE_REGISTRATION_MESSAGE = "registration_message";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		request.getRequestDispatcher(REGISTRATION_PAGE).forward(request, response);
 

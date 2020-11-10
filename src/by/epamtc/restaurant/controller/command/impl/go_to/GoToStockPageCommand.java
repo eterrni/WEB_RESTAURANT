@@ -11,10 +11,11 @@ import by.epamtc.restaurant.controller.command.Command;
 public class GoToStockPageCommand implements Command {
 
 	private static final String STOCK_PAGE = "WEB-INF/jsp/stock_page.jsp";
+	private static final String CONTENT_TYPE = "text/html";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType(CONTENT_TYPE);
 
 		request.getRequestDispatcher(STOCK_PAGE).forward(request, response);
 

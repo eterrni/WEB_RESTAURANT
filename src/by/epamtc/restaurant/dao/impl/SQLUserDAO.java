@@ -22,8 +22,6 @@ import by.epamtc.restaurant.dao.exception.UserExistsDAOException;
 
 public class SQLUserDAO implements UserDAO {
 
-	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-
 	private static final String SELECT_USER_LOGIN_PASSWORD = "SELECT * FROM `rest_db`.users\r\n"
 			+ "WHERE users.login =? AND users.password=?;";
 	private static final String ADD_NEW_USER = "INSERT INTO users(name, surname, patronymic, login, "
@@ -31,9 +29,8 @@ public class SQLUserDAO implements UserDAO {
 	private static final String UPDATE_USER_DATA = "UPDATE `rest_db`.`users` SET `name` = ?, `surname` = ?, `patronymic` =?, `phone_number` = ?, `age` = ?, `email` = ? WHERE (`id_users` = ?);";
 	private static final String ROLE_ID_ADMINISTRATOR = "1";
 
+	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLUserDAO.class);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public User authorization(UserAuthData userAuthData) throws DAOException {

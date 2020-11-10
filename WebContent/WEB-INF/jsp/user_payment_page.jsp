@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +22,18 @@
 	<fmt:message bundle="${loc}" key="local.locbutton.order" var="order" />
 	<fmt:message bundle="${loc}" key="local.login_button" var="login_button" />
 	<fmt:message bundle="${loc}" key="local.registration_button" var="registration_button" />
+	<fmt:message bundle="${loc}" key="local.welcome_page.user_payment_page" var="user_payment_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.admin_page" var="admin_page" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.user_order_page" var="user_order_page" />
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
+	
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.title" var="title" />
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.id_payment" var="id" />
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.status" var="status" />
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.amount" var="amount" />
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.order_id" var="order_id" />
+	<fmt:message bundle="${loc}" key="local.user_paymet_page.button" var="button" />
 	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
@@ -56,11 +65,12 @@
  				</form>
                 </div>
                 <c:if test="${sessionScope.user != null}">
- 				${hello}, ${sessionScope.user.name}
  				<ul>
+ 				<li style="margin-right: 20px;">${hello}, ${sessionScope.user.name}</li>
  				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
  				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
  				</c:if>
+ 				   <li><a href="Controller?command=go_to_user_payment_page">${user_payment_page}</a></li>
  				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
                    <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
                    <li><a href="Controller?command=logout">${logout_button}</a></li>
@@ -96,12 +106,12 @@
 <!-- END HEADER -->
     <main>
     	<table width="100%">
-    		<caption>My payments page</caption>
+    		<caption>${title}</caption>
     			<tr>
-    				<th>Id payment</th>
-    				<th>Status</th>
-    				<th>Amount</th>
-    				<th>Order id</th>
+    				<th>${id}</th>
+    				<th>${status}</th>
+    				<th>${amount}</th>
+    				<th>${order_id}</th>
     			</tr>
     			
     			<c:forEach var="payment" items="${sessionScope.user_payment_list}">
@@ -122,7 +132,7 @@
     					<form action="Controller" method="post">
     					<input type="hidden" name="command" value="pay_order"/>
     					<input type="hidden" name="paymentId" value="${payment.id}"/>
-    					<input type="submit" value="To pay" />
+    					<input type="submit" value="${button}" />
     					</form>
     				</th>
     				</c:if>
@@ -146,6 +156,7 @@
                 </div>
             </div>
         </div>
+        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
     </footer>
 <!-- END FOOTER-->
 </body>

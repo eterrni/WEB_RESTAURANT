@@ -12,7 +12,7 @@ public class GoToGratitudePageCommand implements Command {
 
 	private static final String GRATITUDE_PAGE = "WEB-INF/jsp/gratitude_page.jsp";
 	private static final String WELCOME_PAGE = "WEB-INF/jsp/welcome_page.jsp";
-	
+
 	private static final String CONTENT_TYPE = "text/html";
 
 	private static final String ATTRIBUTE_ORDER = "order";

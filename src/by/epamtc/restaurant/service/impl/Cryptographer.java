@@ -10,12 +10,12 @@ public final class Cryptographer {
 		MessageDigest md5 = MessageDigest.getInstance("MD5");
 		byte[] bytes = md5.digest(password.getBytes());
 		StringBuilder builder = new StringBuilder();
-		
+
 		for (byte b : bytes) {
 			builder.append(String.format("%02X", b));
 		}
 
 		return builder.toString();
-	
+
 	}
 }

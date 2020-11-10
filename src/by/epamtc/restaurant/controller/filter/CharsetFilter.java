@@ -17,7 +17,7 @@ public class CharsetFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		
+
 		encoding = filterConfig.getInitParameter("characterEncoding");
 		context = filterConfig.getServletContext();
 		context.log("Parameter encoding:" + encoding);
@@ -29,9 +29,9 @@ public class CharsetFilter implements Filter {
 
 		request.setCharacterEncoding(encoding);
 		response.setCharacterEncoding(encoding);
-		
+
 		context.log("Charset was set.");
-		
+
 		chain.doFilter(request, response);
 	}
 
