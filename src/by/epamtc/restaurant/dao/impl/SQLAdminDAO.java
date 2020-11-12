@@ -37,6 +37,12 @@ public class SQLAdminDAO implements AdminDAO {
 	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLAdminDAO.class);
 
+	/**
+	 * Execute the SQL statement and change order status.
+	 * 
+	 * @param id of the order to change its status for
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public void changeOrderStatus(Integer orderId) throws DAOException {
 
@@ -68,6 +74,13 @@ public class SQLAdminDAO implements AdminDAO {
 		}
 	}
 
+	/**
+	 * First, requests are made to calculate the total payment amount. Then a
+	 * request is made to generate the payment
+	 * 
+	 * @param ID of the order that the payment is based on
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@SuppressWarnings("resource")
 	@Override
 	public void generatePayment(Integer orderId) throws DAOException {
@@ -167,6 +180,12 @@ public class SQLAdminDAO implements AdminDAO {
 
 	}
 
+	/**
+	 * A request is made to change the status from USER to ADMINISTRATOR.
+	 * 
+	 * @param ID of the user whose status should be changed to administrator
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public void appointUserAnAdministrator(Integer userId) throws DAOException {
 		Connection cn = null;
@@ -198,6 +217,12 @@ public class SQLAdminDAO implements AdminDAO {
 
 	}
 
+	/**
+	 * A request is made to change the status from ADMINISTRATOR to USER.
+	 * 
+	 * @param ID of the administrator whose status should be changed to user
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public void appointAdministratorAnUser(Integer employeeId) throws DAOException {
 		Connection cn = null;

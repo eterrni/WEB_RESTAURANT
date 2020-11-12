@@ -34,6 +34,13 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLDownloadAdminInfoDAO.class);
 
+	/**
+	 * A request is being made to display all unconfirmed orders. Each unconfirmed
+	 * order is added to the unconfirmedClientsOrderList.
+	 * 
+	 * @return List of unconfirmed orders
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Order> downloadUnconfirmedClientsOrderList() throws DAOException {
 		List<Order> unconfirmedClientsOrderList = new ArrayList<>();
@@ -74,6 +81,13 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 		return unconfirmedClientsOrderList;
 	}
 
+	/**
+	 * A request is being made to display all confirmed orders. Each confirmed order
+	 * is added to the confirmedClientsOrderList.
+	 * 
+	 * @return List of confirmed orders
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Order> downloadConfirmedClientsOrderList() throws DAOException {
 		List<Order> confirmedClientsOrderList = new ArrayList<>();
@@ -114,6 +128,13 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 		return confirmedClientsOrderList;
 	}
 
+	/**
+	 * A request is being made to display all users. Each user is added to the
+	 * userList.
+	 * 
+	 * @return List of users
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<User> downloadUserList() throws DAOException {
 		List<User> userList = new ArrayList<>();
@@ -159,6 +180,13 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 		return userList;
 	}
 
+	/**
+	 * A request is being made to display all employees. Each employee is added to
+	 * the employeeList.
+	 * 
+	 * @return List of employees
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<User> downloadEmployeeList() throws DAOException {
 		List<User> employeeList = new ArrayList<>();
@@ -204,6 +232,13 @@ public class SQLDownloadAdminInfoDAO implements DownloadAdminInfoDAO {
 		return employeeList;
 	}
 
+	/**
+	 * A request is being made to display all payments. Each payment is added to the
+	 * paymentList.
+	 * 
+	 * @return List of payments
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Payment> downloadPaymentList() throws DAOException {
 		List<Payment> paymentList = new ArrayList<>();

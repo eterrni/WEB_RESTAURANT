@@ -82,9 +82,7 @@ public class UserFeaturesServiceImpl implements UserFeaturesService {
 				if (flag == 0) {
 					dishMap.put(((Dish) good).getName(), 1);
 				}
-			}
-
-			if (good instanceof Drink) {
+			} else if (good instanceof Drink) {
 				int flag = 0;
 				for (Map.Entry<String, Integer> entry : drinkMap.entrySet()) {
 					if (((Drink) good).getName().equals(entry.getKey())) {
@@ -95,9 +93,7 @@ public class UserFeaturesServiceImpl implements UserFeaturesService {
 				if (flag == 0) {
 					drinkMap.put(((Drink) good).getName(), 1);
 				}
-			}
-
-			if (good instanceof Desert) {
+			} else if (good instanceof Desert) {
 				int flag = 0;
 				for (Map.Entry<String, Integer> entry : desertMap.entrySet()) {
 					if (((Desert) good).getName().equals(entry.getKey())) {

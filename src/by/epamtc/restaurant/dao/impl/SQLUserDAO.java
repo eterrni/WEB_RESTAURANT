@@ -32,6 +32,15 @@ public class SQLUserDAO implements UserDAO {
 	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLUserDAO.class);
 
+	/**
+	 * The method returns a User object created based on data received from the
+	 * database. Data from the database is taken based on the data that was received
+	 * by the input parameter.
+	 * 
+	 * @param authorizationData data about existing User
+	 * @return User object that contains the main data about user from database
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public User authorization(UserAuthData userAuthData) throws DAOException {
 
@@ -79,11 +88,13 @@ public class SQLUserDAO implements UserDAO {
 					user.setRole(Role.USER);
 			}
 		} catch (SQLException | ConnectionPoolException e) {
+			logger.error("SQLUserDAO ( authorization() ) - SQLException | ConnectionPoolException");
 			throw new DAOException("Authorization exception", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, ps, rs);
 			} catch (ConnectionPoolException e) {
+				logger.error("SQLUserDAO ( authorization() ) - error close connection (finally{})");
 				throw new DAOException("Error close connection", e);
 			}
 		}
@@ -91,8 +102,16 @@ public class SQLUserDAO implements UserDAO {
 		return user;
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Registering a new user or throwing an exception if a user with this login
+	 * already exists.
+	 * 
+	 * @param User registration data
+	 * @return true - if registration was successful, false - if registration was
+	 *         unsuccessful
+	 * @exception DAOException if occurred severe problem with database
+	 * @throws UserExistsDAOException if such user already exists
+	 */
 	@Override
 	public boolean registartion(UserRegistrationData userRegistrationData) throws DAOException, UserExistsDAOException {
 
@@ -131,21 +150,31 @@ public class SQLUserDAO implements UserDAO {
 		} catch (SQLIntegrityConstraintViolationException e) {
 			throw new UserExistsDAOException("user_exist", e);
 		} catch (SQLException e) {
-			throw new DAOException("Registration SQLException", e);
+			logger.error("SQLUserDAO ( registartion() ) - SQLException");
+			throw new DAOException("SQLUserDAO ( registartion() ) - SQLException", e);
 		} catch (ConnectionPoolException e) {
-			throw new DAOException("Registration ConnectionPoolException", e);
+			logger.error("SQLUserDAO ( registartion() ) - ConnectionPoolException");
+			throw new DAOException("SQLUserDAO ( registartion() ) - ConnectionPoolException", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, ps);
 			} catch (ConnectionPoolException e) {
+				logger.error("SQLUserDAO ( registartion() ) - ConnectionPoolException (finally{})");
 				throw new DAOException("close_connectionPool_exception", e);
 			}
 		}
 		return registration;
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Execute the SQL statement and update details user data in database.
+	 * 
+	 * @param UserUpdateData userUpdateData-the object with the updated data, User
+	 *                       user-the current user object
+	 * @return true if the data has been successfully updated or false if it has
+	 *         been not
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public boolean updateUserData(UserUpdateData userUpdateData, User user) throws DAOException {
 
@@ -182,16 +211,17 @@ public class SQLUserDAO implements UserDAO {
 			}
 
 		} catch (ConnectionPoolException e) {
-			logger.error("update - connection pool exception");
-			throw new DAOException("update - connection pool exception", e);
+			logger.error("SQLUserDAO ( updateUserData() ) - ConnectionPoolException");
+			throw new DAOException("SQLUserDAO ( updateUserData() ) - ConnectionPoolException", e);
 
 		} catch (SQLException e) {
-			logger.error("update - SQLException");
-			throw new DAOException("update - SQLException", e);
+			logger.error("SQLUserDAO ( updateUserData() ) - SQLException");
+			throw new DAOException("SQLUserDAO ( updateUserData() ) - SQLException", e);
 		} finally {
 			try {
 				connectionPool.closeConnection(cn, ps);
 			} catch (ConnectionPoolException e) {
+				logger.error("SQLUserDAO ( updateUserData() ) - ConnectionPoolException (finally{})");
 				throw new DAOException("close_connectionPool_exception", e);
 			}
 		}

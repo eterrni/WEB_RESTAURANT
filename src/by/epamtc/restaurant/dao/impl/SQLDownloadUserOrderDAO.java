@@ -32,6 +32,13 @@ public class SQLDownloadUserOrderDAO implements DownloadUserOrderDAO {
 	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLDownloadMenuDAO.class);
 
+	/**
+	 * A request is made to the database to receive all the user's orders.
+	 * 
+	 * @param ID of the user whose list orders need to be received
+	 * @return List of user orders
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Order> downloadUserOrderList(Integer userId) throws DAOException {
 
@@ -74,6 +81,13 @@ public class SQLDownloadUserOrderDAO implements DownloadUserOrderDAO {
 		return userOrderList;
 	}
 
+	/**
+	 * A request is made to the database to receive all the user's payments.
+	 * 
+	 * @param ID of the user whose list payments need to be received
+	 * @return List of user payments
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Payment> downloadUserPaymentList(Integer userId) throws DAOException {
 		List<Payment> userPaymentList = new ArrayList<>();

@@ -47,6 +47,12 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 	private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLUserFeaturesDAO.class);
 
+	/**
+	 * Changing the order status from UNPAID to PAID
+	 * 
+	 * @param ID of payment from which you want to change the status
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public void payOrder(Integer paymentId) throws DAOException {
 		Connection cn = null;
@@ -74,6 +80,13 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 
 	}
 
+	/**
+	 * Three requests to the database are made to form a list with order details.
+	 * 
+	 * @return List of products that belong to the order
+	 * @param ID of the order to get the details of
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@SuppressWarnings({ "resource" })
 	@Override
 	public List<Goods> getOrderDetailList(Integer orderId) throws DAOException {
@@ -167,6 +180,14 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 		return orderDetailList;
 	}
 
+	/**
+	 * Two requests are executed. The first one is for creating a new order, and the
+	 * second one is for getting the ID of this order.
+	 * 
+	 * @param ID of the user who made the order
+	 * @return ID of the created order
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public Integer placeOrder(Integer userId) throws DAOException {
 
@@ -223,6 +244,14 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 		return orderId;
 	}
 
+	/**
+	 * Adding dishes from an order to the database.
+	 * 
+	 * @param orderList - list of goods in the order, orderId - id order, dishMap -
+	 *                  Map<String, Integer> String - name of the dish from the
+	 *                  order, Integer - quantity of this dish in the order
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	public void enterDishFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> dishMap)
 			throws DAOException {
 
@@ -260,6 +289,14 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 		}
 	}
 
+	/**
+	 * Adding drinks from an order to the database.
+	 * 
+	 * @param orderList - list of goods in the order, orderId - id order, drinkMap -
+	 *                  Map<String, Integer> String - name of the drink from the
+	 *                  order, Integer - quantity of this drink in the order
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	public void enterDrinkFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> drinkMap)
 			throws DAOException {
 		Connection cn = null;
@@ -295,6 +332,14 @@ public class SQLUserFeaturesDAO implements UserFeaturesDAO {
 		}
 	}
 
+	/**
+	 * Adding deserts from an order to the database.
+	 * 
+	 * @param orderList - list of goods in the order, orderId - id order, desertMap
+	 *                  - Map<String, Integer> String - name of the desert from the
+	 *                  order, Integer - quantity of this desert in the order
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	public void enterDesertFromOrder(List<Goods> orderList, Integer orderId, Map<String, Integer> desertMap)
 			throws DAOException {
 		Connection cn = null;

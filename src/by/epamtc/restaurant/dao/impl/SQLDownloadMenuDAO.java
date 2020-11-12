@@ -27,8 +27,12 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 	private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 	private static final Logger logger = LogManager.getLogger(SQLDownloadMenuDAO.class);
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Uploading all dishes to the list
+	 * 
+	 * @return List of all dishes
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Dish> downloadDish() throws DAOException {
 
@@ -76,8 +80,12 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 		return dishList;
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-
+	/**
+	 * Uploading all drinks to the list
+	 * 
+	 * @return List of all drinks
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Drink> downloadDrink() throws DAOException {
 
@@ -125,8 +133,12 @@ public class SQLDownloadMenuDAO implements DownloadMenuDAO {
 		return drinkList;
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Uploading all deserts to the list
+	 * 
+	 * @return List of all deserts
+	 * @exception DAOException if occurred severe problem with database
+	 */
 	@Override
 	public List<Desert> downloadDesert() throws DAOException {
 

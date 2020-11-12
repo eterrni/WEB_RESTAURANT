@@ -313,7 +313,7 @@ form {
     padding-top: 20px;
 }
 .order-list-title p {
-    font-size: 27px;
+    font-size: 30px;
     color: #5e2f0d;
 }
 .box-wrap {
@@ -452,6 +452,57 @@ form {
     font-size: 15px;
     border-radius: 5px;
     background-color: chocolate;
+    color: white;
+    cursor: pointer;
+}
+
+.update-data-wrap {
+    width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.update-data-container {
+    display: flex;
+    margin: 0 auto;
+    width: 500px;   
+    padding-top: 20px;
+}
+
+.left-contant {
+    width: 50%;
+    text-align: center;
+}
+.left-contant p {
+    color: #5e2f0d;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.right-contant {
+    width: 50%;
+}
+
+.right-contant input {
+    border: none;
+    font-size: 15px;
+    outline: none;
+    border-radius: 3px;
+    color: #5e2f0d;
+    height: 20px;
+}
+
+.update-button {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.update-button button {
+    font-size: 15px;
+    padding: 10px 15px;
+    background-color: #5e2f0d;
+    border: none;
+    border-radius: 5px;
     color: white;
     cursor: pointer;
 }
