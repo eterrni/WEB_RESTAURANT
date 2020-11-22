@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu page</title>
     <style><%@include file="/front/css/reset.css"%></style>
     <style><%@include file="/front/css/core.css"%></style>
 
@@ -115,7 +115,7 @@
 	                   	 <form action="Controller" method="post">
 	       					<input type="hidden" name="command" value="add_dish_to_order" />
 	        				<input type="hidden" name="id" value="${dish.id}" />
-	       			   	    <input type="submit" value="Добавить в заказ" />
+	       			   	    <input type="submit" class="user_order-button" value="Добавить в заказ" />
 	       				 </form>
 	       			    </div>
 	        			</c:if>
@@ -137,7 +137,7 @@
 	                   	 <form action="Controller" method="post">
 	       					<input type="hidden" name="command" value="add_drink_to_order" />
 	        				<input type="hidden" name="id" value="${drink.id}" />
-	       			   	    <input type="submit" value="Добавить в заказ" />
+	       			   	    <input type="submit" class="user_order-button" value="Добавить в заказ" />
 	       				 </form>
 	       			    </div>
 	        			</c:if>
@@ -159,7 +159,7 @@
 	                   	 <form action="Controller" method="post">
 	       					<input type="hidden" name="command" value="add_desert_to_order" />
 	        				<input type="hidden" name="id" value="${desert.id}" />
-	       			   	    <input type="submit" value="Добавить в заказ" />
+	       			   	    <input type="submit" class="user_order-button" value="Добавить в заказ" />
 	       				 </form>
 	       			    </div>
 	        			</c:if>

@@ -313,8 +313,10 @@ form {
     padding-top: 20px;
 }
 .order-list-title p {
-    font-size: 30px;
+    text-align: center;
+    padding-top: 20px;
     color: #5e2f0d;
+    font-size: 30px;
 }
 .box-wrap {
     display: flex;
@@ -325,6 +327,7 @@ form {
 }
 .name-box {
     width: 50%;
+    font-weight: bold;
 }
 .name-box p {
     font-size: 20px;
@@ -332,6 +335,7 @@ form {
 }
 .price-box {
     width: 50%;
+    font-weight: bold;
 }
 .price-box p {
     font-size: 20px;
@@ -345,6 +349,7 @@ form {
     width: 50%;
     display: flex;
     align-items: center;
+    font-size: 20px;
 }
 
 .name-food p{
@@ -355,6 +360,7 @@ form {
     width: 35%;
     display: flex;
     align-items: center;
+    font-size: 20px;
 }
 
 .price-food p{
@@ -435,7 +441,9 @@ form {
     text-align: center;
     color: #5e2f0d;
     font-size: 20px;
+    font-weight: bold;
 }
+
 .box-content {
     text-align: center;
     color: #5e2f0d;
@@ -506,3 +514,91 @@ form {
     color: white;
     cursor: pointer;
 }
+
+.map{
+	width: 500px;
+	margin:0 auto;
+	padding-top: 10px;
+}
+
+.contact-info{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.contact-title{
+	font-size: 20px;
+    color: #5e2f0d;
+}
+
+.contact-description{
+	font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #5e2f0d;
+}
+
+.about_us{
+	padding-top: 20px;
+	text-align: center;
+}
+
+.about_us-title{
+	font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #5e2f0d;
+}
+
+.about_us-description{
+	font-size: 20px;
+    color: #5e2f0d;
+}
+
+.user_order-title {
+    text-align: center;
+    padding-top: 20px;
+    color: #5e2f0d;
+    font-size: 30px;
+}
+
+.user_order-name-wrap {
+	padding-top: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    display: flex;
+}
+
+.user_order-name-wrap div {
+    width: 190px;
+    text-align: center;
+    color: #5e2f0d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user_order-contant-wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+    justify-content: space-between;
+    display: flex;
+}
+
+.user_order-contant-wrap div {
+    width: 190px;
+    text-align: center;
+    color: #5e2f0d;
+    font-size: 20px;
+}
+
+.user_order-button {
+    padding: 10px;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: chocolate;
+    color: white;
+    cursor: pointer;
+}
+.

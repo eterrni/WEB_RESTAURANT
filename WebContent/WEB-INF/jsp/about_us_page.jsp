@@ -27,6 +27,13 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.about_us_page.title_1" var="title_1" />
+	<fmt:message bundle="${loc}" key="local.about_us_page.title_2" var="title_2" />
+	<fmt:message bundle="${loc}" key="local.about_us_page.title_3" var="title_3" />
+	<fmt:message bundle="${loc}" key="local.about_us_page.description_1" var="description_1" />
+	<fmt:message bundle="${loc}" key="local.about_us_page.description_2" var="description_2" />
+	<fmt:message bundle="${loc}" key="local.about_us_page.description_3" var="description_3" />
+	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.about_us" var="about_us" />
@@ -94,9 +101,32 @@
         </div>
     </header>
 <!-- END HEADER -->
-<div class="main2">
-<h1>ABOUT US PAGE</h1>
+<main>
+<div class="about_us" >
+
+	<div class="about_us-title">
+		<p>${title_1}</p>
+	</div>
+	<div class="about_us-description">
+	<p>${description_1}</p>
+	</div>
+
+	<div class="about_us-title">
+		<p>${title_2}</p>
+	</div>
+	<div class="about_us-description">
+		<p>${description_2}</p>
+	</div>
+	
+	<div class="about_us-title">
+		<p>${title_3}</p>
+	</div>
+	<div class="about_us-description">
+		<p>${description_3}</p>
+	</div>
+
 </div>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

@@ -27,6 +27,13 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.contact_page.title_1" var="title_1" />
+	<fmt:message bundle="${loc}" key="local.contact_page.title_2" var="title_2" />
+	<fmt:message bundle="${loc}" key="local.contact_page.title_3" var="title_3" />
+	<fmt:message bundle="${loc}" key="local.contact_page.description_1" var="description_1" />
+	<fmt:message bundle="${loc}" key="local.contact_page.description_2" var="description_2" />
+	<fmt:message bundle="${loc}" key="local.contact_page.description_3" var="description_3" />
+	
 	<fmt:message bundle="${loc}" key="local.welcome_page.menu" var="menu" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.stocks" var="stocks" />
 	<fmt:message bundle="${loc}" key="local.welcome_page.about_us" var="about_us" />
@@ -94,9 +101,34 @@
         </div>
     </header>
 <!-- END HEADER -->
-<div class="main2">
-<h1>CONTACT PAGE</h1>
+<main>
+<div class="map">
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor
+%3A3b0e209be9309ed8d3c4dc709421c6aee20df82e8ed76865e41e235658cb8560&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
 </div>
+<div class="contact-info">
+	<div class="contact-title">
+		<p>${title_1}</p>
+	</div>
+	<div class="contact-description">
+		<p>${description_1}</p>
+	</div>
+	
+	<div class="contact-title">
+		<p>${title_2}</p>
+	</div>
+	<div class="contact-description">
+		<p>${description_2}</p>
+	</div>
+	
+	<div class="contact-title">
+	<p>${title_3}</p>
+	</div>
+	<div class="contact-description">
+	<p>${description_3}</p>
+	</div>
+</div>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

@@ -27,6 +27,7 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.clients_page.title" var="title" />
 	<fmt:message bundle="${loc}" key="local.clients_page.client_id" var="client_id" />
 	<fmt:message bundle="${loc}" key="local.clients_page.client_name" var="client_name" />
 	<fmt:message bundle="${loc}" key="local.clients_page.client_surname" var="client_surname" />
@@ -94,38 +95,37 @@
         </div>
     </header>
 <!-- END HEADER -->
-<div class="main2">
-
-<table width="100%">
-	<tr>
-		<th>${client_id}</th>
-		<th>${client_name}</th>
-		<th>${client_surname}</th>
-		<th>${client_patronymic}</th>
-		<th>${client_phoneNumber}</th>
-		<th>${client_age}</th>
-		<th>${client_email}</th>
-	</tr>
-	
-	<c:forEach var="client" items="${sessionScope.clients_list}" >
-		<tr>
-			<th>${client.id}</th>
-			<th>${client.name}</th>
-			<th>${client.surname}</th>
-			<th>${client.patronymic}</th>
-			<th>${client.phoneNumber}</th>
-			<th>${client.age}</th>
-			<th>${client.email}</th>
-			<th> <form action="Controller" method="post">
-	      		 <input type="hidden" name="command" value="appoint_an_administrator">
-	     		 <input type="hidden" name="user_id" value="${client.id}" />
-	     		 <input type="submit" value="${button}"/>
-	    	     </form>
-			</th>
-		</tr>
-	</c:forEach>
-</table>
-</div>
+<main>
+			<p class="user_order-title">${title}</p>
+			<div class="user_order-name-wrap">
+				<div>${client_id}</div>
+				<div>${client_name}</div>
+				<div>${client_surname}</div>
+				<div>${client_patronymic}</div>
+				<div>${client_phoneNumber}</div>
+				<div>${client_age}</div>
+				<div>${client_email}</div>
+				<div></div>
+			</div>
+			<c:forEach var="client" items="${sessionScope.clients_list}" >
+				<div class="user_order-contant-wrap">
+					<div>${client.id}</div>
+					<div>${client.name}</div>
+					<div>${client.surname}</div>
+					<div>${client.patronymic}</div>
+					<div>${client.phoneNumber}</div>
+					<div>${client.age}</div>
+					<div>${client.email}</div>
+					<div>
+						<form action="Controller" method="post">
+	      		 			<input type="hidden" name="command" value="appoint_an_administrator">
+	     		 			<input type="hidden" name="user_id" value="${client.id}" />
+	     				        <input type="submit" class="user_order-button" value="${button}"/>
+	    	     				</form>
+					</div>
+				</div>
+			</c:forEach>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

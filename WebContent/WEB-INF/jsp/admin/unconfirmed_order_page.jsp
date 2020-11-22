@@ -27,6 +27,7 @@
 	<fmt:message bundle="${loc}" key="local.personal_accout_button" var="personal_accout_button" />
 	<fmt:message bundle="${loc}" key="local.personal_logout_button" var="logout_button" />
 	
+	<fmt:message bundle="${loc}" key="local.user_order_page.title" var="title" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_id" var="order_id" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_date" var="order_date" />
 	<fmt:message bundle="${loc}" key="local.user_order_page.order_status" var="order_status" />
@@ -91,38 +92,39 @@
         </div>
     </header>
 <!-- END HEADER -->
-<div class="main2">
-
-<table width="100%">
-	<tr>
-		<th>${order_id}</th>
-		<th>${order_status}</th>
-		<th>${order_date}</th>
-		<th>${user_id}</th>
-	</tr>
-	
-	<c:forEach var="order" items="${sessionScope.unconfirmed_clients_order_list}" >
-	<tr>
-		<th>${order.id}</th>
-		<th> <p style="color:red">${order.status}</p> </th>
-		<th>${order.createDate}</th>
-		<th>${order.userId}</th>
-		<th><form action="Controller" method="post">
-        	<input type="hidden" name="order_id" value="${order.id}" />
-        	<input type="hidden" name="command" value="print_order_detail" />
-        	<input type="submit" value="${detail_order_button}" />
-        	</form>
-		</th>
-		<th><form action="Controller" method="post">
-	      <input type="hidden" name="command" value="confirm_order" />
-	      <input type="hidden" name="orderId" value="${order.id}" />
-	      <input type="submit" value="${button}" />
-	      </form></th>
-	</tr>
-	</c:forEach>
-
-</table>
-</div>
+<main>
+			<p class="user_order-title">${title}</p>
+			<div class="user_order-name-wrap">
+				<div>${order_id}</div>
+				<div>${order_status}</div>
+				<div>${order_date}</div>
+				<div>${user_id}</div>
+				<div></div>
+				<div></div>
+			</div>
+			<c:forEach var="order" items="${sessionScope.unconfirmed_clients_order_list}" >
+				<div class="user_order-contant-wrap">
+					<div>${order.id}</div>
+					<div><p style="color:red">${order.status}</p></div>
+					<div>${order.createDate}</div>
+					<div>${order.userId}</div>
+					<div>
+						<form action="Controller" method="post">
+        					<input type="hidden" name="order_id" value="${order.id}" />
+        					<input type="hidden" name="command" value="print_order_detail" />
+        					<input type="submit" class="user_order-button" value="${detail_order_button}" />
+        					</form>
+					</div>
+					<div>
+						<form action="Controller" method="post">
+	     				        <input type="hidden" name="command" value="confirm_order" />
+	    				        <input type="hidden" name="orderId" value="${order.id}" />
+	    				        <input type="submit" class="user_order-button" value="${button}" />
+	    				        </form>
+					</div>
+				</div>
+			</c:forEach>
+</main>
 		<!-- START FOOTER-->
     <footer>
         <div class="footer-box">

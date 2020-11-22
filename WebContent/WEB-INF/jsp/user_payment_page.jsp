@@ -46,118 +46,124 @@
 	
 </head>
 <body>
-<!-- START HEADER -->
-    <header>
-        <div class="header-up">
-            <div class="registr-box">
-                <div class="language">
-                
-                <form action="ServletForChangeLanguage" method="post">
- 				<input type="hidden" name="locale" value="ru" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_user_payment_page" />
- 				<button type="submit" >${ru_button}</button>
- 				</form>
- 				
- 				<form action="ServletForChangeLanguage" method="post">
- 				<input type="hidden" name="locale" value="en" />
- 				<input type="hidden" name="previousRequest" value="Controller?command=go_to_user_payment_page" />
- 				<button type="submit" >${en_button}</button>
- 				</form>
-                </div>
-                <c:if test="${sessionScope.user != null}">
- 				<ul>
- 				<li style="margin-right: 20px;">${hello}, ${sessionScope.user.name}</li>
- 				<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
- 				<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
- 				</c:if>
- 				   <li><a href="Controller?command=go_to_user_payment_page">${user_payment_page}</a></li>
- 				   <li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
-                   <li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
-                   <li><a href="Controller?command=logout">${logout_button}</a></li>
-                   <li><a href="Controller?command=go_to_order_page">${order}</a></li>
-                </ul>
- 				</c:if>
- 				
- 				<c:if test="${sessionScope.user == null }">
- 				<ul>
-                   <li><a href="Controller?command=go_to_registration_page">${registration_button}</a></li>
-                    <li><a href="Controller?command=go_to_login_page">${login_button}</a></li>
-                </ul>
- 				</c:if>
- 				
-            </div>
-        </div>
-        <div class="header-down">
-            <div class="header-down-box">
-                <div class="logo-box" onclick="">
-                <a href="Controller?command=go_to_welcome_page"><img src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png" alt="logo"></a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="Controller?command=go_to_menu_page">${menu}</a></li>
-                        <li><a href="Controller?command=go_to_stock_page">${stocks}</a></li>
-                        <li><a href="Controller?command=go_to_about_us_page">${about_us}</a></li>
-                        <li><a href="Controller?command=go_to_contact_page">${contacts}</a></li>
-                    </ul>
-                </div>           
-            </div> 
-        </div>
-    </header>
-<!-- END HEADER -->
-    <main>
-    	<table width="100%">
-    		<caption>${title}</caption>
-    			<tr>
-    				<th>${id}</th>
-    				<th>${status}</th>
-    				<th>${amount}</th>
-    				<th>${order_id}</th>
-    			</tr>
-    			
-    			<c:forEach var="payment" items="${sessionScope.user_payment_list}">
-    			<tr>
-    				<th>${payment.id}</th>
-    				
-    				<c:if test="${payment.status eq 'UNPAID'}" >
-    					<th><p style="color:red">${payment.status}</p></th>
-    				</c:if>
-    				<c:if test="${payment.status eq 'PAID'}" >
-    					<th><p style="color:green">${payment.status}</p></th>
-    				</c:if>
-    				
-    				<th>${payment.amount}</th>
-    				<th>${payment.orderId}</th>
-    				<c:if test="${payment.status eq 'UNPAID'}">
-    				<th>
-    					<form action="Controller" method="post">
-    					<input type="hidden" name="command" value="pay_order"/>
-    					<input type="hidden" name="paymentId" value="${payment.id}"/>
-    					<input type="submit" value="${button}" />
-    					</form>
-    				</th>
-    				</c:if>
-    			</tr>
-    			</c:forEach>
-    	</table>
-    </main>
-<!-- START FOOTER-->
-    <footer>
-        <div class="footer-box">
-            <div class="time-work">
-                <p>${work_time}</p>
-            </div>
-            <div class="our-contacts">
-                <p>${address}</p>
-            </div>
-            <div class="how-to-pay">
-                <p>${social_networks}</p>
-                <div class="social-logo">
-                    <a href="http://instagram.com"><img src="front/img/icon-footer-instagram.png" alt="insta" /></a>
-                </div>
-            </div>
-        </div>
-        <p class="copyright-text"><mytag:copyright copyrightText="Copyright 2020"/></p>
-    </footer>
-<!-- END FOOTER-->
+	<!-- START HEADER -->
+	<header>
+		<div class="header-up">
+			<div class="registr-box">
+				<div class="language">
+
+					<form action="ServletForChangeLanguage" method="post">
+						<input type="hidden" name="locale" value="ru" /> <input
+							type="hidden" name="previousRequest"
+							value="Controller?command=go_to_user_payment_page" />
+						<button type="submit">${ru_button}</button>
+					</form>
+
+					<form action="ServletForChangeLanguage" method="post">
+						<input type="hidden" name="locale" value="en" /> <input
+							type="hidden" name="previousRequest"
+							value="Controller?command=go_to_user_payment_page" />
+						<button type="submit">${en_button}</button>
+					</form>
+				</div>
+				<c:if test="${sessionScope.user != null}">
+					<ul>
+						<li style="margin-right: 20px;">${hello},
+							${sessionScope.user.name}</li>
+						<c:if test="${sessionScope.user.role eq 'ADMINISTRATOR'}">
+							<li><a href="Controller?command=go_to_admin_page">${admin_page}</a></li>
+						</c:if>
+						<li><a href="Controller?command=go_to_user_payment_page">${user_payment_page}</a></li>
+						<li><a href="Controller?command=go_to_user_order_page">${user_order_page}</a></li>
+						<li><a href="Controller?command=go_to_personal_account_page">${personal_accout_button}</a></li>
+						<li><a href="Controller?command=logout">${logout_button}</a></li>
+						<li><a href="Controller?command=go_to_order_page">${order}</a></li>
+					</ul>
+				</c:if>
+
+				<c:if test="${sessionScope.user == null }">
+					<ul>
+						<li><a href="Controller?command=go_to_registration_page">${registration_button}</a></li>
+						<li><a href="Controller?command=go_to_login_page">${login_button}</a></li>
+					</ul>
+				</c:if>
+
+			</div>
+		</div>
+		<div class="header-down">
+			<div class="header-down-box">
+				<div class="logo-box" onclick="">
+					<a href="Controller?command=go_to_welcome_page"><img
+						src="https://i.pinimg.com/originals/f6/61/9c/f6619c65315d26e6a2ce19a6a6043257.png"
+						alt="logo"></a>
+				</div>
+				<div class="menu">
+					<ul>
+						<li><a href="Controller?command=go_to_menu_page">${menu}</a></li>
+						<li><a href="Controller?command=go_to_stock_page">${stocks}</a></li>
+						<li><a href="Controller?command=go_to_about_us_page">${about_us}</a></li>
+						<li><a href="Controller?command=go_to_contact_page">${contacts}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- END HEADER -->
+	<main>
+			<p class="user_order-title">${title}</p>
+			<div class="user_order-name-wrap">
+				<div>${id}</div>
+				<div>${status}</div>
+				<div>${amount}</div>
+				<div>${order_id}</div>
+				<div></div>
+			</div>
+			<c:forEach var="payment" items="${sessionScope.user_payment_list}">
+				<div class="user_order-contant-wrap">
+					<div>${payment.id}</div>
+					<div>
+						<c:if test="${payment.status eq 'UNPAID'}">
+						<p style="color: red">${payment.status}</p>
+						</c:if>
+						<c:if test="${payment.status eq 'PAID'}">
+						<p style="color: green">${payment.status}</p>
+						</c:if>
+					</div>
+					<div>${payment.amount}</div>
+					<div>${payment.orderId}</div>
+					<div>
+						<c:if test="${payment.status eq 'UNPAID'}">
+						<form action="Controller" method="post">
+						<input type="hidden" name="command" value="pay_order" /> <input
+						type="hidden" name="paymentId" value="${payment.id}" /> <input
+						type="submit" class="user_order-button" value="${button}" />
+						</form>
+						</c:if>
+					</div>
+				</div>
+			</c:forEach>
+</main>
+	<!-- START FOOTER-->
+	<footer>
+		<div class="footer-box">
+			<div class="time-work">
+				<p>${work_time}</p>
+			</div>
+			<div class="our-contacts">
+				<p>${address}</p>
+			</div>
+			<div class="how-to-pay">
+				<p>${social_networks}</p>
+				<div class="social-logo">
+					<a href="http://instagram.com"><img
+						src="front/img/icon-footer-instagram.png" alt="insta" /></a>
+				</div>
+			</div>
+		</div>
+		<p class="copyright-text">
+			<mytag:copyright copyrightText="Copyright 2020" />
+		</p>
+	</footer>
+	<!-- END FOOTER-->
 </body>
 </html>

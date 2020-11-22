@@ -143,7 +143,7 @@
 </c:if>
 
 <c:if test = "${sessionScope.order == null}">
-<h1>${empty_order_message_1} <a href="Controller?command=go_to_menu_page">${empty_order_message_2}</a></h1>
+<h1 style="min-height: 530px;height: 100%;display: flex;justify-content: center;align-items: center;font-size: 31px;color: #5e2f0d;">${empty_order_message_1}<a href="Controller?command=go_to_menu_page">${empty_order_message_2}</a></h1>
 </c:if>
 </main>
 <!-- START FOOTER-->
